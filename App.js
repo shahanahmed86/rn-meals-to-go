@@ -15,9 +15,9 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 import { theme } from './src/infrastructure/theme';
-import { AppProvider } from './src/context';
 import { RestaurantsScreen } from './src/features/restaurants/screens';
 import { changeKeepAwake } from './src/utils';
+import { AppProvider } from './src/context';
 
 const TAB_ICONS = {
   Restaurants: 'restaurant',
@@ -58,19 +58,19 @@ function App() {
     return () => changeKeepAwake(false);
   }, []);
   return (
-    <PaperProvider>
+    <ThemeProvider theme={theme}>
       <AppProvider>
-        <NavigationContainer>
-          <ThemeProvider theme={theme}>
+        <PaperProvider>
+          <NavigationContainer>
             <Tab.Navigator screenOptions={createScreenOptions}>
               <Tab.Screen name="Restaurants" component={RestaurantsScreen} />
               <Tab.Screen name="Map" component={MapScreen} />
               <Tab.Screen name="Settings" component={SettingsScreen} />
             </Tab.Navigator>
-          </ThemeProvider>
-        </NavigationContainer>
+          </NavigationContainer>
+        </PaperProvider>
       </AppProvider>
-    </PaperProvider>
+    </ThemeProvider>
   );
 }
 

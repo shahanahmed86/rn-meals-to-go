@@ -1,28 +1,35 @@
 import * as actions from './actions';
 
 export const initialState = {
-  history: [],
-  currentSubject: null,
+  restaurants: [],
+  isLoading: false,
+  error: null,
 };
 
 export function reducer(state, action) {
   switch (action.type) {
-    case actions.ADD: {
+    case actions.FETCH_RESTAURANTS: {
       return {
         ...state,
-        history: state.history.concat([state.currentSubject]),
+        restaurants: state.restaurants.concat(action.payload),
       };
     }
-    case actions.CLEAR: {
+    case actions.TOGGLE_LOADING: {
       return {
         ...state,
-        currentSubject: null,
+        isLoading: !state.isLoading,
       };
     }
-    case actions.SELECT: {
+    case actions.SET_ERROR: {
       return {
         ...state,
-        currentSubject: action.payload,
+        error: action.payload,
+      };
+    }
+    case actions.UNSET_ERROR: {
+      return {
+        ...state,
+        error: null,
       };
     }
     default: {

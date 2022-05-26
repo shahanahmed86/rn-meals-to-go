@@ -1,21 +1,23 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Searchbar } from 'react-native-paper';
 import { Spacer } from '../../../components';
+import { withAppContext } from '../../../context/context';
 
 import { RestaurantInfoCard } from '../components';
 import { SafeArea, SearchContainer, RestaurantList } from './restaurant.styles';
 
-function RestaurantsScreen() {
+function RestaurantsScreen({ restaurants, isLoading, error }) {
   return (
     <SafeArea>
       <SearchContainer>
         <Searchbar />
       </SearchContainer>
       <RestaurantList
-        data={[{}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}]}
-        renderItem={() => (
-          <Spacer position="bottom" size="medium">
-            <RestaurantInfoCard />
+        data={restaurants}
+        renderItem={({ item }) => (
+          <Spacer position="bottom" size="large">
+            <RestaurantInfoCard restaurant={item} />
           </Spacer>
         )}
         keyExtractor={(_, i) => i}
@@ -24,4 +26,8 @@ function RestaurantsScreen() {
   );
 }
 
-export default RestaurantsScreen;
+RestaurantsScreen.propTypes = {
+  restaurants: PropTypes.array.isRequired,
+};
+
+export default withAppContext(RestaurantsScreen);
