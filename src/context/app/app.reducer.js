@@ -1,19 +1,12 @@
-import * as actions from './actions';
+import * as actions from './app.actions';
 
 export const initialState = {
-  restaurants: [],
   isLoading: false,
   error: null,
 };
 
 export function reducer(state, action) {
   switch (action.type) {
-    case actions.FETCH_RESTAURANTS: {
-      return {
-        ...state,
-        restaurants: state.restaurants.concat(action.payload),
-      };
-    }
     case actions.TOGGLE_LOADING: {
       return {
         ...state,
@@ -24,12 +17,14 @@ export function reducer(state, action) {
       return {
         ...state,
         error: action.payload,
+        isLoading: false,
       };
     }
     case actions.UNSET_ERROR: {
       return {
         ...state,
         error: null,
+        isLoading: false,
       };
     }
     default: {

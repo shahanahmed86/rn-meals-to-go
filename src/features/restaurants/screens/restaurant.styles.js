@@ -15,3 +15,8 @@ export const RestaurantList = styled(FlatList).attrs({
     padding: 16,
   },
 })``;
+
+export const LoaderComponent = styled(SafeArea)`
+  justify-content: center;
+  align-items: center;
+`;

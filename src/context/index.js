@@ -1,5 +1,3 @@
-export * as actions from './actions';
+export * as appContext from './app';
 
-export * from './reducer';
-
-export { default as AppProvider, withAppContext } from './context';
+export * as restaurantContext from './restaurant';

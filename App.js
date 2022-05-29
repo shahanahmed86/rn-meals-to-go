@@ -17,7 +17,10 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import { theme } from './src/infrastructure/theme';
 import { RestaurantsScreen } from './src/features/restaurants/screens';
 import { changeKeepAwake } from './src/utils';
-import { AppProvider } from './src/context';
+import { appContext, restaurantContext } from './src/context';
+
+const { AppProvider } = appContext;
+const { RestaurantProvider } = restaurantContext;
 
 const TAB_ICONS = {
   Restaurants: 'restaurant',
@@ -49,6 +52,7 @@ const createScreenOptions = ({ route }) => {
     tabBarIcon: ({ color, size }) => <Ionicons name={iconName} size={size} color={color} />,
     tabBarActiveTintColor: 'tomato',
     tabBarInactiveTintColor: 'gray',
+    headerShown: false,
   };
 };
 
@@ -62,8 +66,14 @@ function App() {
       <AppProvider>
         <PaperProvider>
           <NavigationContainer>
-            <Tab.Navigator screenOptions={createScreenOptions}>
-              <Tab.Screen name="Restaurants" component={RestaurantsScreen} />
+            <Tab.Navigator screenOptions={createScreenOptions} initialRouteName="Restaurants">
+              <Tab.Screen name="Restaurants">
+                {() => (
+                  <RestaurantProvider>
+                    <RestaurantsScreen />
+                  </RestaurantProvider>
+                )}
+              </Tab.Screen>
               <Tab.Screen name="Map" component={MapScreen} />
               <Tab.Screen name="Settings" component={SettingsScreen} />
             </Tab.Navigator>
