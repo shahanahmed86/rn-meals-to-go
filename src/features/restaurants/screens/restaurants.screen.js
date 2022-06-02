@@ -23,7 +23,7 @@ function RestaurantsScreen({ restaurantStore, navigation }) {
         <RestaurantList
           data={restaurants}
           renderItem={({ item }) => (
-            <TouchableOpacity onPress={() => navigation.navigate('RestaurantDetails')}>
+            <TouchableOpacity onPress={() => navigation.navigate('RestaurantDetails', { restaurant: item })}>
               <Spacer position="bottom" size="large">
                 <RestaurantInfoCard restaurant={item} />
               </Spacer>

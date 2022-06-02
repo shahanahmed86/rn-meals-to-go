@@ -27,7 +27,7 @@ function RestaurantProvider({ children }) {
     }
   }, [store.location]);
 
-  const debouncedSearchText = useDebounce(store.searchText);
+  const debouncedSearchText = useDebounce(store.searchText || 'toronto');
 
   const retrieveLocation = useCallback(() => {
     if (debouncedSearchText) {
