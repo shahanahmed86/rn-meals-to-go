@@ -1,9 +1,14 @@
 import * as actions from './restaurant.actions';
 
 export const initialState = {
+  loadingRestaurants: false,
   restaurants: [],
-  isLoading: false,
-  error: null,
+  errorRestaurants: null,
+
+  loadingLocation: false,
+  location: null,
+  errorLocation: null,
+
   searchText: '',
 };
 
@@ -15,30 +20,53 @@ export function reducer(state, action) {
         searchText: action.payload,
       };
     }
+    case actions.LOADING_RESTAURANTS: {
+      return {
+        ...state,
+        loadingRestaurants: action.payload,
+        restaurants: [],
+        errorRestaurants: null,
+      };
+    }
     case actions.FETCH_RESTAURANTS: {
       return {
         ...state,
-        restaurants: state.restaurants.concat(action.payload),
-        isLoading: false,
+        loadingRestaurants: false,
+        restaurants: action.payload,
+        errorRestaurants: null,
       };
     }
-    case actions.TOGGLE_LOADING: {
+    case actions.ERROR_RESTAURANTS: {
       return {
         ...state,
-        isLoading: !state.isLoading,
+        loadingRestaurants: false,
+        restaurants: [],
+        errorRestaurants: action.payload,
       };
     }
-    case actions.SET_ERROR: {
+    case actions.LOADING_LOCATION: {
       return {
         ...state,
-        error: action.payload,
-        isLoading: false,
+        loadingLocation: action.payload,
+        location: null,
+        errorLocation: null,
       };
     }
-    case actions.UNSET_ERROR: {
+    case actions.FETCH_LOCATION: {
       return {
         ...state,
-        error: null,
+        loadingLocation: false,
+        location: action.payload,
+        errorLocation: null,
+      };
+    }
+    case actions.ERROR_LOCATION: {
+      return {
+        ...state,
+        loadingLocation: false,
+        location: null,
+        errorLocation: action.payload,
+        restaurants: [],
       };
     }
     default: {

@@ -8,9 +8,9 @@ const { Provider, Consumer } = createContext();
 export const withAppContext = Component => props => <Consumer>{value => <Component {...value} {...props} />}</Consumer>;
 
 function AppProvider({ children }) {
-  const [appStore, appDispatch] = useReducer(reducer, initialState);
+  const [store, dispatch] = useReducer(reducer, initialState);
 
-  return <Provider value={{ appStore, appDispatch }}>{children}</Provider>;
+  return <Provider value={{ appStore: store, appDispatch: dispatch }}>{children}</Provider>;
 }
 
 AppProvider.propTypes = {

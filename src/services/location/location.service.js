@@ -4,12 +4,13 @@ import { locations } from './location.mock';
 
 export const locationRequest = searchTerm => {
   return new Promise((resolve, reject) => {
-    if (typeof searchTerm !== 'string') reject('Invalid value found in search');
-    if (!searchTerm) reject('Please type something...');
+    setTimeout(() => {
+      if (typeof searchTerm !== 'string') reject(new Error('Invalid value found in search'));
 
-    if (!(searchTerm in locations)) reject('Location not found');
+      if (!(searchTerm in locations)) reject(new Error('Location not found'));
 
-    resolve(locations[searchTerm]);
+      resolve(locations[searchTerm]);
+    }, 700);
   });
 };
 

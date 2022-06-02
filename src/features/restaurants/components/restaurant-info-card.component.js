@@ -8,7 +8,7 @@ import { Spacer, Text } from '../../../components';
 import { Info, Icon, Ratings, RestaurantCard, Section, SectionEnd } from './restaurant-info-card.styles';
 
 function RestaurantInfoCard({ restaurant }) {
-  const { name, icon, photos, address, isOpenNow, rating, isClosedTemporarily } = restaurant;
+  const { name, icon, photos, address, isOpenNow, rating, isClosedTemporarily, placeId } = restaurant;
 
   const ratingArray = new Array(Math.floor(rating)).fill(0);
   return (
@@ -20,7 +20,7 @@ function RestaurantInfoCard({ restaurant }) {
           <Section>
             <Ratings>
               {ratingArray.map((_, i) => (
-                <SvgXml key={i} xml={star} width={20} height={20} />
+                <SvgXml key={`start-${placeId}-${i}`} xml={star} width={20} height={20} />
               ))}
             </Ratings>
             <SectionEnd>
