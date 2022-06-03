@@ -7,7 +7,7 @@ import open from '../../../../assets/open';
 import { Spacer, Text } from '../../../components';
 import { Info, Icon, Ratings, RestaurantCard, Section, SectionEnd } from './restaurant-info-card.styles';
 
-function RestaurantInfoCard({ restaurant }) {
+function RestaurantInfoCard({ restaurant, showCloseIcon }) {
   const { name, icon, photos, address, isOpenNow, rating, isClosedTemporarily, placeId } = restaurant;
 
   const ratingArray = new Array(Math.floor(rating)).fill(0);
@@ -54,6 +54,7 @@ RestaurantInfoCard.defaultProps = {
     rating: 4,
     isClosedTemporarily: true,
   },
+  showCloseIcon: false,
 };
 
 RestaurantInfoCard.propTypes = {
@@ -66,6 +67,7 @@ RestaurantInfoCard.propTypes = {
     rating: PropTypes.number,
     isClosedTemporarily: PropTypes.bool,
   }).isRequired,
+  showCloseIcon: PropTypes.bool.isRequired,
 };
 
 export default RestaurantInfoCard;

@@ -1,6 +1,9 @@
+import { Platform } from 'react-native';
 import * as actions from './app.actions';
 
 export const initialState = {
+  isAndroid: Platform.OS === 'android',
+
   isLoading: false,
   error: null,
 };

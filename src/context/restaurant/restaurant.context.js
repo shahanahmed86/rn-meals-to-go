@@ -13,7 +13,7 @@ const { Provider, Consumer } = createContext();
 export const withRestaurantContext = Component => props =>
   <Consumer>{value => <Component {...value} {...props} />}</Consumer>;
 
-function RestaurantProvider({ children }) {
+function RestaurantProvider({ appStore, children }) {
   const [store, dispatch] = useReducer(reducer, initialState);
 
   const retrieveRestaurants = useCallback(() => {
@@ -27,7 +27,7 @@ function RestaurantProvider({ children }) {
     }
   }, [store.location]);
 
-  const debouncedSearchText = useDebounce(store.searchText || 'toronto');
+  const debouncedSearchText = useDebounce(store.searchText);
 
   const retrieveLocation = useCallback(() => {
     if (debouncedSearchText) {
@@ -43,11 +43,12 @@ function RestaurantProvider({ children }) {
   useEffect(retrieveRestaurants, [retrieveRestaurants]);
   useEffect(retrieveLocation, [retrieveLocation]);
 
-  return <Provider value={{ restaurantStore: store, restaurantDispatch: dispatch }}>{children}</Provider>;
+  return <Provider value={{ appStore, restaurantStore: store, restaurantDispatch: dispatch }}>{children}</Provider>;
 }
 
 RestaurantProvider.propTypes = {
   children: PropTypes.element.isRequired,
+  appStore: PropTypes.object.isRequired,
 };
 
 export default withAppContext(RestaurantProvider);

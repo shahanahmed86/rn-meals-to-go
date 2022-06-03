@@ -2,12 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { TouchableOpacity } from 'react-native';
 import { ActivityIndicator, Colors } from 'react-native-paper';
-import { Spacer } from '../../../components';
-import { restaurantContext } from '../../../context';
-
+import { Spacer, Search } from '../../../components';
 import { RestaurantInfoCard } from '../components';
 import { SafeArea, RestaurantList, LoaderComponent } from './restaurant.styles';
-import Search from '../../../components/search/search.component';
+
+import { restaurantContext } from '../../../context';
 
 const { withRestaurantContext } = restaurantContext;
 function RestaurantsScreen({ restaurantStore, navigation }) {

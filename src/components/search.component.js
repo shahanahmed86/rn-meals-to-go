@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Searchbar } from 'react-native-paper';
-import { SearchContainer } from '../../features/restaurants/screens/restaurant.styles';
-import { restaurantContext } from '../../context';
+import { SearchContainer } from '../features/restaurants/screens/restaurant.styles';
+import { restaurantContext } from '../context';
 
 const { withRestaurantContext, actions } = restaurantContext;
 

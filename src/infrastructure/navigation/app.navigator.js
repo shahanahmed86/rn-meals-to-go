@@ -1,31 +1,16 @@
 import React from 'react';
-import { View, Text } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import RestaurantsNavigator from './restaurants.navigator';
+import { MapScreen } from '../../features/map/screens';
+import { SettingsScreen } from '../../features/settings/screens';
 
 const TAB_ICONS = {
   Restaurants: 'restaurant',
   Map: 'map',
   Settings: 'settings',
 };
-
-function MapScreen() {
-  return (
-    <View>
-      <Text>Map!</Text>
-    </View>
-  );
-}
-
-function SettingsScreen() {
-  return (
-    <View>
-      <Text>Settings!</Text>
-    </View>
-  );
-}
 
 const Tab = createBottomTabNavigator();
 

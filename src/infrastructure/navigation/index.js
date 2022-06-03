@@ -1,12 +1,15 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 
-import { default as AppNavigator } from './app.navigator';
+import AppNavigator from './app.navigator';
+import { restaurantContext } from '../../context';
+
+const { RestaurantProvider } = restaurantContext;
 
 function Navigation() {
   return (
-    <Fragment>
+    <RestaurantProvider>
       <AppNavigator />
-    </Fragment>
+    </RestaurantProvider>
   );
 }
 

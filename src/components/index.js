@@ -1,5 +1,7 @@
-export * from './spacer';
+export { default as Spacer } from './spacer.component';
 
-export * from './typography';
+export { default as Text } from './text.component';
 
-export * from './search';
+export { default as Search } from './search.component';
+
+export { default as CompactRestaurantInfo } from './compact-restaurant-info.component';
