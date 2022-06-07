@@ -6,7 +6,7 @@ export const initialState = {
 
   user: null,
   authenticating: false,
-  errorAuth: null,
+  authError: null,
 };
 
 export function reducer(state, action) {
@@ -16,7 +16,7 @@ export function reducer(state, action) {
         ...state,
         user: null,
         authenticating: action.payload,
-        errorAuth: null,
+        authError: null,
       };
     }
     case actions.ON_AUTH: {
@@ -24,7 +24,7 @@ export function reducer(state, action) {
         ...state,
         user: action.payload,
         authenticating: false,
-        errorAuth: null,
+        authError: null,
       };
     }
     case actions.AUTH_ERROR: {
@@ -32,7 +32,15 @@ export function reducer(state, action) {
         ...state,
         user: null,
         authenticating: false,
-        errorAuth: action.payload,
+        authError: action.payload,
+      };
+    }
+    case actions.LOGOUT: {
+      return {
+        ...state,
+        user: null,
+        authenticating: false,
+        authError: null,
       };
     }
     default: {

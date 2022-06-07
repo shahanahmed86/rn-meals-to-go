@@ -17,7 +17,7 @@ Navigation.propTypes = {
   appStore: PropTypes.shape({
     user: PropTypes.object,
     authenticating: PropTypes.bool.isRequired,
-    errorAuth: PropTypes.string,
+    authError: PropTypes.string,
   }).isRequired,
 };
 

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { CompactRestaurantInfo } from '../../../components';
 
 function MapCallout({ restaurant, isAndroid }) {
-  return <CompactRestaurantInfo restaurant={restaurant} isAndroid={isAndroid} onMapScreen={true} />;
+  return <CompactRestaurantInfo restaurant={restaurant} isAndroid={isAndroid} onMapScreen />;
 }
 
 MapCallout.propTypes = {
