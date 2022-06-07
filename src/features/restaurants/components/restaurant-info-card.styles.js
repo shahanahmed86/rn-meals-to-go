@@ -4,6 +4,7 @@ import { Card } from 'react-native-paper';
 
 export const RestaurantCard = styled(Card)`
   background-color: ${props => props.theme.colors.bg.primary};
+  padding: ${props => props.theme.sizes[0]};
 `;
 
 export const Info = styled(View)`

@@ -4,30 +4,35 @@ import * as actions from './app.actions';
 export const initialState = {
   isAndroid: Platform.OS === 'android',
 
-  isLoading: false,
-  error: null,
+  user: null,
+  authenticating: false,
+  errorAuth: null,
 };
 
 export function reducer(state, action) {
   switch (action.type) {
-    case actions.TOGGLE_LOADING: {
+    case actions.LOADING_AUTH: {
       return {
         ...state,
-        isLoading: !state.isLoading,
+        user: null,
+        authenticating: action.payload,
+        errorAuth: null,
       };
     }
-    case actions.SET_ERROR: {
+    case actions.ON_AUTH: {
       return {
         ...state,
-        error: action.payload,
-        isLoading: false,
+        user: action.payload,
+        authenticating: false,
+        errorAuth: null,
       };
     }
-    case actions.UNSET_ERROR: {
+    case actions.AUTH_ERROR: {
       return {
         ...state,
-        error: null,
-        isLoading: false,
+        user: null,
+        authenticating: false,
+        errorAuth: action.payload,
       };
     }
     default: {

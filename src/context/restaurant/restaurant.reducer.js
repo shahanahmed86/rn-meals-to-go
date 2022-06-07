@@ -9,7 +9,9 @@ export const initialState = {
   location: null,
   errorLocation: null,
 
-  searchText: '',
+  searchText: 'chicago',
+
+  favorites: [],
 };
 
 export function reducer(state, action) {
@@ -67,6 +69,25 @@ export function reducer(state, action) {
         location: null,
         errorLocation: action.payload,
         restaurants: [],
+      };
+    }
+    case actions.ADD_TO_FAVORITES: {
+      return {
+        ...state,
+        favorites: state.favorites.concat([action.payload]),
+      };
+    }
+    case actions.REMOVE_FROM_FAVORITES: {
+      const filteredFavorites = state.favorites.filter(({ placeId }) => placeId !== action.payload.placeId);
+      return {
+        ...state,
+        favorites: filteredFavorites,
+      };
+    }
+    case actions.SAVE_FAVORITES: {
+      return {
+        ...state,
+        favorites: action.payload,
       };
     }
     default: {

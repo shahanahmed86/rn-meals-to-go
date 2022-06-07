@@ -4,16 +4,17 @@ import { SvgXml } from 'react-native-svg';
 
 import star from '../../../../assets/star';
 import open from '../../../../assets/open';
-import { Spacer, Text } from '../../../components';
+import { Favorite, Spacer, Text } from '../../../components';
 import { Info, Icon, Ratings, RestaurantCard, Section, SectionEnd } from './restaurant-info-card.styles';
 
-function RestaurantInfoCard({ restaurant, showCloseIcon }) {
+function RestaurantInfoCard({ restaurant }) {
   const { name, icon, photos, address, isOpenNow, rating, isClosedTemporarily, placeId } = restaurant;
 
   const ratingArray = new Array(Math.floor(rating)).fill(0);
   return (
     <RestaurantCard elevation={5}>
-      <RestaurantCard.Cover source={{ uri: photos[0] }} />
+      <Favorite restaurant={restaurant} />
+      <RestaurantCard.Cover key={name} source={{ uri: photos[0] }} />
       <Info>
         <Text variant="label">{name}</Text>
         {ratingArray.length && (
@@ -54,7 +55,6 @@ RestaurantInfoCard.defaultProps = {
     rating: 4,
     isClosedTemporarily: true,
   },
-  showCloseIcon: false,
 };
 
 RestaurantInfoCard.propTypes = {
@@ -67,7 +67,6 @@ RestaurantInfoCard.propTypes = {
     rating: PropTypes.number,
     isClosedTemporarily: PropTypes.bool,
   }).isRequired,
-  showCloseIcon: PropTypes.bool.isRequired,
 };
 
 export default RestaurantInfoCard;

@@ -10,8 +10,8 @@ const { withRestaurantContext, actions } = restaurantContext;
 export const SearchContainer = styled(View)`
   padding: ${props => props.theme.space[3]};
   position: absolute;
+  top: 0;
   z-index: 999;
-  top: 40px;
   width: 100%;
 `;
 

@@ -1,5 +1,6 @@
 import React, { createContext, useReducer, useEffect, useCallback } from 'react';
 import PropTypes from 'prop-types';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { initialState, reducer } from './restaurant.reducer';
 import { restaurantsRequest, restaurantsTransform } from '../../services/restaurants/restaurants.service';
@@ -43,7 +44,51 @@ function RestaurantProvider({ appStore, children }) {
   useEffect(retrieveRestaurants, [retrieveRestaurants]);
   useEffect(retrieveLocation, [retrieveLocation]);
 
-  return <Provider value={{ appStore, restaurantStore: store, restaurantDispatch: dispatch }}>{children}</Provider>;
+  const addToFavorites = restaurant => {
+    dispatch({ type: actions.ADD_TO_FAVORITES, payload: restaurant });
+  };
+
+  const removeFromFavorites = restaurant => {
+    const isMatched = store.restaurants.some(r => r.placeId === restaurant.placeId);
+    if (isMatched) dispatch({ type: actions.REMOVE_FROM_FAVORITES, payload: restaurant });
+  };
+
+  const saveFavorite = async value => {
+    try {
+      const jsonValue = JSON.stringify(value);
+      await AsyncStorage.setItem('@favorites', jsonValue);
+    } catch (e) {
+      console.log('error storing', e);
+    }
+  };
+
+  const loadFavorites = useCallback(() => {
+    (async () => {
+      try {
+        const value = await AsyncStorage.getItem('@favorites');
+        if (value !== null) {
+          dispatch({ type: actions.SAVE_FAVORITES, payload: JSON.parse(value) });
+        }
+      } catch (e) {
+        console.log('error loading', e);
+      }
+    })();
+  }, []);
+
+  useEffect(() => {
+    loadFavorites();
+  }, [loadFavorites]);
+
+  useEffect(() => {
+    saveFavorite(store.favorites);
+  }, [store.favorites]);
+
+  return (
+    <Provider
+      value={{ appStore, restaurantStore: store, restaurantDispatch: dispatch, addToFavorites, removeFromFavorites }}>
+      {children}
+    </Provider>
+  );
 }
 
 RestaurantProvider.propTypes = {

@@ -1,5 +1,5 @@
-export const TOGGLE_LOADING = 'TOGGLE_LOADING';
+export const LOADING_AUTH = 'LOADING_AUTH';
 
-export const SET_ERROR = 'SET_ERROR';
+export const ON_AUTH = 'ON_AUTH';
 
-export const UNSET_ERROR = 'UNSET_ERROR';
+export const AUTH_ERROR = 'AUTH_ERROR';

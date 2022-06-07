@@ -24,8 +24,8 @@ const Item = styled(View)`
   align-items: center;
 `;
 
-function CompactRestaurantInfo({ restaurant, isAndroid }) {
-  const ResponsiveImage = isAndroid ? CompactWebView : CompactImage;
+function CompactRestaurantInfo({ restaurant, isAndroid, onMapScreen }) {
+  const ResponsiveImage = isAndroid && onMapScreen ? CompactWebView : CompactImage;
   return (
     <Item>
       <ResponsiveImage source={{ uri: restaurant.photos[0] }} />
@@ -36,9 +36,14 @@ function CompactRestaurantInfo({ restaurant, isAndroid }) {
   );
 }
 
+CompactRestaurantInfo.defaultProps = {
+  onMapScreen: false,
+};
+
 CompactRestaurantInfo.propTypes = {
   restaurant: PropTypes.object.isRequired,
   isAndroid: PropTypes.bool.isRequired,
+  onMapScreen: PropTypes.bool.isRequired,
 };
 
 export default CompactRestaurantInfo;

@@ -1,19 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { TouchableOpacity } from 'react-native';
 import { ActivityIndicator, Colors } from 'react-native-paper';
-import { Spacer, Search } from '../../../components';
+import { Spacer, Search, FavoritesBar } from '../../../components';
 import { RestaurantInfoCard } from '../components';
 import { SafeArea, RestaurantList, LoaderComponent } from './restaurant.styles';
 
 import { restaurantContext } from '../../../context';
 
 const { withRestaurantContext } = restaurantContext;
-function RestaurantsScreen({ restaurantStore, navigation }) {
-  const { loadingRestaurants, restaurants } = restaurantStore;
+function RestaurantsScreen({ appStore, restaurantStore, navigation }) {
+  const { loadingRestaurants, restaurants, favorites } = restaurantStore;
+  const { isAndroid } = appStore;
+  const [isToggled, setIsToggled] = useState(false);
+
   return (
     <SafeArea>
-      <Search />
+      <Search onFavoritesToggle={() => setIsToggled(!isToggled)} isFavoritesToggled={isToggled} />
+      {isToggled && <FavoritesBar favorites={favorites} isAndroid={isAndroid} onNavigate={navigation.navigate} />}
       {loadingRestaurants ? (
         <LoaderComponent>
           <ActivityIndicator size="large" color={Colors.blue300} />
@@ -39,6 +43,10 @@ RestaurantsScreen.propTypes = {
   restaurantStore: PropTypes.shape({
     loadingRestaurants: PropTypes.bool.isRequired,
     restaurants: PropTypes.array.isRequired,
+    favorites: PropTypes.array.isRequired,
+  }),
+  appStore: PropTypes.shape({
+    isAndroid: PropTypes.bool.isRequired,
   }),
   navigation: PropTypes.object.isRequired,
 };
