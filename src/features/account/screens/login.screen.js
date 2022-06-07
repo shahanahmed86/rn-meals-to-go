@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { ActivityIndicator } from 'react-native';
 import PropTypes from 'prop-types';
 
 import { Spacer, Text } from '../../../components';
@@ -45,7 +44,7 @@ const LoginScreen = ({ onLogin, appStore }) => {
         </Spacer>
         <Spacer position="top" size="large">
           <AuthButton disabled={authenticating} icon="lock-open-outline" mode="contained" onPress={onLoginHandler}>
-            Login
+            {authenticating ? 'Loading...' : 'Login'}
           </AuthButton>
         </Spacer>
         {errorAuth && (
