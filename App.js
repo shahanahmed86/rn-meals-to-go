@@ -13,11 +13,10 @@ import { Provider as PaperProvider } from 'react-native-paper';
 
 import { theme } from './src/infrastructure/theme';
 import { changeKeepAwake } from './src/utils';
-import { appContext, restaurantContext } from './src/context';
+import { appContext } from './src/context';
 import Navigation from './src/infrastructure/navigation';
 
 const { AppProvider } = appContext;
-const { RestaurantProvider } = restaurantContext;
 
 function App() {
   useEffect(() => {
@@ -28,9 +27,7 @@ function App() {
     <ThemeProvider theme={theme}>
       <AppProvider>
         <PaperProvider>
-          <RestaurantProvider>
-            <Navigation />
-          </RestaurantProvider>
+          <Navigation />
         </PaperProvider>
       </AppProvider>
     </ThemeProvider>

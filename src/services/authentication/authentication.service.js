@@ -1,5 +1,6 @@
 import firebase from '@react-native-firebase/app';
 import auth from '@react-native-firebase/auth';
+import { actions } from '../../context/app';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyC8EpeJjgxD5mwQExeJWbzRvcs39v50nW4',
@@ -23,4 +24,10 @@ export const registerRequest = (email, password) => {
 
 export const logoutRequest = () => {
   return auth().signOut();
+};
+
+export const onAuthStateChanged = dispatch => {
+  auth().onAuthStateChanged(user => {
+    if (user) dispatch({ type: actions.ON_AUTH, payload: user });
+  });
 };

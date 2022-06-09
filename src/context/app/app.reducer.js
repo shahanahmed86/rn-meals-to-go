@@ -35,7 +35,7 @@ export function reducer(state, action) {
         authError: action.payload,
       };
     }
-    case actions.LOGOUT: {
+    case actions.RESET: {
       return {
         ...state,
         user: null,

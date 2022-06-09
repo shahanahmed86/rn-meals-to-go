@@ -1,6 +1,5 @@
 import React, { createContext, useReducer, useEffect, useCallback } from 'react';
 import PropTypes from 'prop-types';
-import auth from '@react-native-firebase/auth';
 
 import { initialState, reducer } from './app.reducer';
 import * as actions from './app.actions';
@@ -46,17 +45,14 @@ function AppProvider({ children }) {
   }, []);
 
   useEffect(() => {
-    dispatch({ type: actions.LOADING_AUTH, payload: true });
-    auth().onAuthStateChanged(user => {
-      if (user) dispatch({ type: actions.ON_AUTH, payload: user });
-    });
+    onAuthStateChanged(dispatch);
   }, []);
 
   const onLogout = useCallback(() => {
     dispatch({ type: actions.LOADING_AUTH, payload: true });
     logoutRequest()
       .then(() => {
-        dispatch({ type: actions.LOGOUT });
+        dispatch({ type: actions.RESET });
       })
       .catch(e => {
         dispatch({ type: actions.AUTH_ERROR, payload: e.message });

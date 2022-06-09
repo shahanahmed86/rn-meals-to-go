@@ -1,13 +1,30 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import LottieView from 'lottie-react-native';
 
 import { Spacer } from '../../../components';
-import { AccountBackground, AccountCover, AccountContainer, AuthButton, Title } from '../components/account.styles';
+import {
+  AccountBackground,
+  AccountCover,
+  AnimationWrapper,
+  AccountContainer,
+  AuthButton,
+  Title,
+} from '../components/account.styles';
 
 const AccountScreen = ({ navigation }) => {
   return (
     <AccountBackground resizeMode="cover">
       <AccountCover />
+      <AnimationWrapper>
+        <LottieView
+          key="animation"
+          autoPlay
+          loop
+          resizeMode="cover"
+          source={require('../../../../assets/watermelon.json')}
+        />
+      </AnimationWrapper>
       <Title>Meals To Go</Title>
       <AccountContainer>
         <AuthButton icon="lock-open-outline" mode="contained" onPress={() => navigation.navigate('Login')}>

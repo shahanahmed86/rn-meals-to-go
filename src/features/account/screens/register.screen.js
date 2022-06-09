@@ -14,9 +14,9 @@ import {
 } from '../components/account.styles';
 import { appContext } from '../../../context';
 
-const { withAppContext } = appContext;
+const { withAppContext, actions } = appContext;
 
-const RegisterScreen = ({ onRegister, appStore, navigation }) => {
+const RegisterScreen = ({ onRegister, appStore, appDispatch, navigation }) => {
   const { authenticating, authError } = appStore;
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -26,6 +26,10 @@ const RegisterScreen = ({ onRegister, appStore, navigation }) => {
     if (!email.trim() || !password.trim() || !confirmPassword.trim()) return;
 
     onRegister(email, password, confirmPassword);
+  };
+  const goBack = () => {
+    appDispatch({ type: actions.RESET });
+    navigation.goBack();
   };
   return (
     <AccountBackground resizeMode="cover">
@@ -79,7 +83,7 @@ const RegisterScreen = ({ onRegister, appStore, navigation }) => {
         )}
       </AccountContainer>
       <Spacer>
-        <AuthButton disabled={authenticating} mode="contained" onPress={() => navigation.goBack()}>
+        <AuthButton disabled={authenticating} mode="contained" onPress={goBack}>
           Back
         </AuthButton>
       </Spacer>
@@ -93,6 +97,7 @@ RegisterScreen.propTypes = {
     authenticating: PropTypes.bool.isRequired,
     authError: PropTypes.string,
   }).isRequired,
+  appDispatch: PropTypes.func.isRequired,
   navigation: PropTypes.shape({
     goBack: PropTypes.func.isRequired,
   }).isRequired,

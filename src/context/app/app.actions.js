@@ -5,3 +5,5 @@ export const ON_AUTH = 'ON_AUTH';
 export const AUTH_ERROR = 'AUTH_ERROR';
 
 export const LOGOUT = 'LOGOUT';
+
+export const RESET = 'RESET';

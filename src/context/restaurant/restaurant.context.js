@@ -53,19 +53,19 @@ function RestaurantProvider({ appStore, children }) {
     if (isMatched) dispatch({ type: actions.REMOVE_FROM_FAVORITES, payload: restaurant });
   };
 
-  const saveFavorite = async value => {
+  const saveFavorite = async (value, uid) => {
     try {
       const jsonValue = JSON.stringify(value);
-      await AsyncStorage.setItem('@favorites', jsonValue);
+      await AsyncStorage.setItem(`@favorites-${uid}`, jsonValue);
     } catch (e) {
       console.log('error storing', e);
     }
   };
 
-  const loadFavorites = useCallback(() => {
+  const loadFavorites = useCallback(uid => {
     (async () => {
       try {
-        const value = await AsyncStorage.getItem('@favorites');
+        const value = await AsyncStorage.getItem(`@favorites-${uid}`);
         if (value !== null) {
           dispatch({ type: actions.SAVE_FAVORITES, payload: JSON.parse(value) });
         }
@@ -76,12 +76,12 @@ function RestaurantProvider({ appStore, children }) {
   }, []);
 
   useEffect(() => {
-    loadFavorites();
-  }, [loadFavorites]);
+    if (appStore.user) loadFavorites(appStore.user.uid);
+  }, [loadFavorites, appStore.user]);
 
   useEffect(() => {
-    saveFavorite(store.favorites);
-  }, [store.favorites]);
+    if (appStore.user) saveFavorite(store.favorites, appStore.user.uid);
+  }, [store.favorites, appStore.user]);
 
   return (
     <Provider
@@ -93,7 +93,9 @@ function RestaurantProvider({ appStore, children }) {
 
 RestaurantProvider.propTypes = {
   children: PropTypes.element.isRequired,
-  appStore: PropTypes.object.isRequired,
+  appStore: PropTypes.shape({
+    user: PropTypes.object,
+  }).isRequired,
 };
 
 export default withAppContext(RestaurantProvider);
