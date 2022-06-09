@@ -77,14 +77,8 @@ export function reducer(state, action) {
         favorites: state.favorites.concat([action.payload]),
       };
     }
-    case actions.REMOVE_FROM_FAVORITES: {
-      const filteredFavorites = state.favorites.filter(({ placeId }) => placeId !== action.payload.placeId);
-      return {
-        ...state,
-        favorites: filteredFavorites,
-      };
-    }
-    case actions.SAVE_FAVORITES: {
+    case actions.REMOVE_FROM_FAVORITES:
+    case actions.LOAD_FAVORITES: {
       return {
         ...state,
         favorites: action.payload,

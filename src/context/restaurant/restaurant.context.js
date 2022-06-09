@@ -44,31 +44,48 @@ function RestaurantProvider({ appStore, children }) {
   useEffect(retrieveRestaurants, [retrieveRestaurants]);
   useEffect(retrieveLocation, [retrieveLocation]);
 
-  const addToFavorites = restaurant => {
-    dispatch({ type: actions.ADD_TO_FAVORITES, payload: restaurant });
-  };
-
-  const removeFromFavorites = restaurant => {
-    const isMatched = store.restaurants.some(r => r.placeId === restaurant.placeId);
-    if (isMatched) dispatch({ type: actions.REMOVE_FROM_FAVORITES, payload: restaurant });
-  };
-
-  const saveFavorite = async (value, uid) => {
+  const addToFavorites = async (restaurant, uid) => {
     try {
-      const jsonValue = JSON.stringify(value);
+      const storedFavorites = await AsyncStorage.getItem(`@favorites-${uid}`).then(JSON.parse);
+
+      let jsonValue = JSON.stringify([restaurant]);
+      if (Array.isArray(storedFavorites)) jsonValue = JSON.stringify(storedFavorites.concat(restaurant));
+
       await AsyncStorage.setItem(`@favorites-${uid}`, jsonValue);
+
+      dispatch({ type: actions.ADD_TO_FAVORITES, payload: restaurant });
     } catch (e) {
-      console.log('error storing', e);
+      console.log('error adding', e);
+    }
+  };
+
+  const removeFromFavorites = async (restaurant, uid) => {
+    try {
+      const isMatched = store.restaurants.some(r => r.placeId === restaurant.placeId);
+      if (!isMatched) return;
+
+      const storedFavorites = await AsyncStorage.getItem(`@favorites-${uid}`).then(JSON.parse);
+      if (!Array.isArray(storedFavorites)) return;
+
+      const isFound = storedFavorites.some(favorite => favorite.placeId === restaurant.placeId);
+      if (!isFound) return;
+
+      const filteredFavorites = storedFavorites.filter(favorite => favorite.placeId !== restaurant.placeId);
+
+      const jsonValue = JSON.stringify(filteredFavorites);
+      await AsyncStorage.setItem(`@favorites-${uid}`, jsonValue);
+
+      dispatch({ type: actions.REMOVE_FROM_FAVORITES, payload: filteredFavorites });
+    } catch (e) {
+      console.log('error adding', e);
     }
   };
 
   const loadFavorites = useCallback(uid => {
     (async () => {
       try {
-        const value = await AsyncStorage.getItem(`@favorites-${uid}`);
-        if (value !== null) {
-          dispatch({ type: actions.SAVE_FAVORITES, payload: JSON.parse(value) });
-        }
+        const payload = await AsyncStorage.getItem(`@favorites-${uid}`).then(JSON.parse);
+        if (Array.isArray(payload)) dispatch({ type: actions.LOAD_FAVORITES, payload });
       } catch (e) {
         console.log('error loading', e);
       }
@@ -78,10 +95,6 @@ function RestaurantProvider({ appStore, children }) {
   useEffect(() => {
     if (appStore.user) loadFavorites(appStore.user.uid);
   }, [loadFavorites, appStore.user]);
-
-  useEffect(() => {
-    if (appStore.user) saveFavorite(store.favorites, appStore.user.uid);
-  }, [store.favorites, appStore.user]);
 
   return (
     <Provider

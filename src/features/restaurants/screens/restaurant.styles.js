@@ -1,11 +1,8 @@
 import styled from 'styled-components/native';
 import { FlatList } from 'react-native';
-import { SafeAreaView, View } from 'react-native';
+import { View } from 'react-native';
 
-export const SafeArea = styled(SafeAreaView)`
-  flex: 1;
-  background-color: ${props => props.theme.colors.bg.primary};
-`;
+import { SafeArea } from '../../../components';
 
 export const SearchContainer = styled(View)`
   padding: ${props => props.theme.space[3]};

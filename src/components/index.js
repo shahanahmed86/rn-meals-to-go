@@ -9,3 +9,5 @@ export { default as CompactRestaurantInfo } from './compact-restaurant-info.comp
 export { default as Favorite } from './favorite.component';
 
 export { default as FavoritesBar } from './favorites-bar.component';
+
+export * from './styles';

@@ -21,8 +21,11 @@ function AppProvider({ children }) {
     dispatch({ type: actions.LOADING_AUTH, payload: true });
 
     loginRequest(email, password)
-      .then(user => {
-        dispatch({ type: actions.ON_AUTH, payload: user });
+      .then(result => {
+        let payload = result;
+        if (result && 'user' in result) payload = result.user;
+
+        dispatch({ type: actions.ON_AUTH, payload });
       })
       .catch(e => {
         dispatch({ type: actions.AUTH_ERROR, payload: e.message });
@@ -36,8 +39,11 @@ function AppProvider({ children }) {
     dispatch({ type: actions.LOADING_AUTH, payload: true });
 
     registerRequest(email, password)
-      .then(user => {
-        dispatch({ type: actions.ON_AUTH, payload: user });
+      .then(result => {
+        let payload = result;
+        if (result && 'user' in result) payload = result.user;
+
+        dispatch({ type: actions.ON_AUTH, payload });
       })
       .catch(e => {
         dispatch({ type: actions.AUTH_ERROR, payload: e.message });

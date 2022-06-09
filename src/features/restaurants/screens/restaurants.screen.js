@@ -4,7 +4,8 @@ import { TouchableOpacity } from 'react-native';
 import { ActivityIndicator, Colors } from 'react-native-paper';
 import { Spacer, Search, FavoritesBar } from '../../../components';
 import { RestaurantInfoCard } from '../components';
-import { SafeArea, RestaurantList, LoaderComponent } from './restaurant.styles';
+import { RestaurantList, LoaderComponent } from './restaurant.styles';
+import { SafeArea } from '../../../components';
 
 import { restaurantContext } from '../../../context';
 

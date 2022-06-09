@@ -27,7 +27,10 @@ export const logoutRequest = () => {
 };
 
 export const onAuthStateChanged = dispatch => {
-  auth().onAuthStateChanged(user => {
-    if (user) dispatch({ type: actions.ON_AUTH, payload: user });
+  auth().onAuthStateChanged(result => {
+    let payload = result;
+    if (result && 'user' in result) payload = result.user;
+
+    dispatch({ type: actions.ON_AUTH, payload });
   });
 };

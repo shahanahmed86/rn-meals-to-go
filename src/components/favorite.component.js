@@ -15,8 +15,9 @@ const FavoriteButton = styled(TouchableOpacity)`
   z-index: 9;
 `;
 
-function Favorite({ restaurantStore, addToFavorites, removeFromFavorites, restaurant }) {
+function Favorite({ appStore, restaurantStore, addToFavorites, removeFromFavorites, restaurant }) {
   const { favorites } = restaurantStore;
+  const { user } = appStore;
 
   const isFavorite = useMemo(() => {
     return favorites.some(r => r.placeId === restaurant.placeId);
@@ -25,7 +26,7 @@ function Favorite({ restaurantStore, addToFavorites, removeFromFavorites, restau
   const toggleFavorites = isFavorite ? removeFromFavorites : addToFavorites;
   const iconName = isFavorite ? 'heart' : 'heart-outline';
   return (
-    <FavoriteButton onPress={() => toggleFavorites(restaurant)}>
+    <FavoriteButton onPress={() => toggleFavorites(restaurant, user.uid)}>
       <Ionicons name={iconName} color="red" size={24} />
     </FavoriteButton>
   );
@@ -34,6 +35,9 @@ function Favorite({ restaurantStore, addToFavorites, removeFromFavorites, restau
 Favorite.propTypes = {
   restaurantStore: PropTypes.shape({
     favorites: PropTypes.array.isRequired,
+  }),
+  appStore: PropTypes.shape({
+    user: PropTypes.object.isRequired,
   }),
   addToFavorites: PropTypes.func.isRequired,
   removeFromFavorites: PropTypes.func.isRequired,

@@ -4,7 +4,7 @@ import { List } from 'react-native-paper';
 import PropTypes from 'prop-types';
 
 import { RestaurantInfoCard } from '../components';
-import { SafeArea } from './restaurant.styles';
+import { SafeArea } from '../../../components';
 
 function RestaurantDetails({ route }) {
   const { restaurant } = route.params;
