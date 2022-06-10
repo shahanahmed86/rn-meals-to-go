@@ -27,6 +27,12 @@ export function reducer(state, action) {
         authError: null,
       };
     }
+    case actions.SAVE_PICTURE: {
+      return {
+        ...state,
+        user: { ...state.user, photoURL: action.payload },
+      };
+    }
     case actions.AUTH_ERROR: {
       return {
         ...state,

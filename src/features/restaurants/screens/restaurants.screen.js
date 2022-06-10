@@ -2,7 +2,9 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { TouchableOpacity } from 'react-native';
 import { ActivityIndicator, Colors } from 'react-native-paper';
+
 import { Spacer, Search, FavoritesBar } from '../../../components';
+import { FadeInView } from '../../../animations';
 import { RestaurantInfoCard } from '../components';
 import { RestaurantList, LoaderComponent } from './restaurant.styles';
 import { SafeArea } from '../../../components';
@@ -24,17 +26,19 @@ function RestaurantsScreen({ appStore, restaurantStore, navigation }) {
           <ActivityIndicator size="large" color={Colors.blue300} />
         </LoaderComponent>
       ) : (
-        <RestaurantList
-          data={restaurants}
-          renderItem={({ item }) => (
-            <TouchableOpacity onPress={() => navigation.navigate('RestaurantDetails', { restaurant: item })}>
-              <Spacer position="bottom" size="large">
-                <RestaurantInfoCard restaurant={item} />
-              </Spacer>
-            </TouchableOpacity>
-          )}
-          keyExtractor={(_, i) => i}
-        />
+        <FadeInView>
+          <RestaurantList
+            data={restaurants}
+            renderItem={({ item }) => (
+              <TouchableOpacity onPress={() => navigation.navigate('RestaurantDetails', { restaurant: item })}>
+                <Spacer position="bottom" size="large">
+                  <RestaurantInfoCard restaurant={item} />
+                </Spacer>
+              </TouchableOpacity>
+            )}
+            keyExtractor={(_, i) => i}
+          />
+        </FadeInView>
       )}
     </SafeArea>
   );

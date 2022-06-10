@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { ActivityIndicator, Colors } from 'react-native-paper';
 
 import { Spacer, Text } from '../../../components';
 import {
@@ -18,8 +17,8 @@ const { withAppContext, actions } = appContext;
 
 const LoginScreen = ({ onLogin, appStore, appDispatch, navigation }) => {
   const { authenticating, authError } = appStore;
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('test1@domain.com');
+  const [password, setPassword] = useState('test123');
 
   const onLoginHandler = () => {
     if (!email.trim() || !password.trim()) return;
@@ -56,13 +55,9 @@ const LoginScreen = ({ onLogin, appStore, appDispatch, navigation }) => {
           />
         </Spacer>
         <Spacer position="top" size="large">
-          {!authenticating ? (
-            <AuthButton icon="lock-open-outline" mode="contained" onPress={onLoginHandler}>
-              Login
-            </AuthButton>
-          ) : (
-            <ActivityIndicator animating color={Colors.blue300} />
-          )}
+          <AuthButton disabled={authenticating} icon="lock-open-outline" mode="contained" onPress={onLoginHandler}>
+            Login
+          </AuthButton>
         </Spacer>
         {authError && (
           <ErrorContainer size="large">

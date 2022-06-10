@@ -7,6 +7,7 @@ import { restaurantContext } from '../../../context';
 import { SafeArea, Text, Spacer } from '../../../components';
 import { RestaurantList } from '../../restaurants/screens';
 import { RestaurantInfoCard } from '../../restaurants/components';
+import { FadeInView } from '../../../animations';
 
 const { withRestaurantContext } = restaurantContext;
 
@@ -26,17 +27,19 @@ function FavoritesScreen({ restaurantStore, navigation }) {
   }
   return (
     <SafeArea>
-      <RestaurantList
-        data={favorites}
-        renderItem={({ item }) => (
-          <TouchableOpacity onPress={() => navigation.navigate('RestaurantDetails', { restaurant: item })}>
-            <Spacer position="bottom" size="large">
-              <RestaurantInfoCard restaurant={item} />
-            </Spacer>
-          </TouchableOpacity>
-        )}
-        keyExtractor={(_, i) => i}
-      />
+      <FadeInView>
+        <RestaurantList
+          data={favorites}
+          renderItem={({ item }) => (
+            <TouchableOpacity onPress={() => navigation.navigate('RestaurantDetails', { restaurant: item })}>
+              <Spacer position="bottom" size="large">
+                <RestaurantInfoCard restaurant={item} />
+              </Spacer>
+            </TouchableOpacity>
+          )}
+          keyExtractor={(_, i) => i}
+        />
+      </FadeInView>
     </SafeArea>
   );
 }

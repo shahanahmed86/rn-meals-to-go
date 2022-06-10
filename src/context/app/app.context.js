@@ -7,6 +7,7 @@ import {
   loginRequest,
   logoutRequest,
   onAuthStateChanged,
+  reformUserPayload,
   registerRequest,
 } from '../../services/authentication/authentication.service';
 
@@ -17,38 +18,26 @@ export const withAppContext = Component => props => <Consumer>{value => <Compone
 function AppProvider({ children }) {
   const [store, dispatch] = useReducer(reducer, initialState);
 
-  const onLogin = useCallback((email, password) => {
-    dispatch({ type: actions.LOADING_AUTH, payload: true });
+  const onLogin = useCallback(
+    (email, password) => {
+      dispatch({ type: actions.LOADING_AUTH, payload: true });
 
-    loginRequest(email, password)
-      .then(result => {
-        let payload = result;
-        if (result && 'user' in result) payload = result.user;
+      loginRequest(email, password).then(result => reformUserPayload(result, dispatch));
+    },
+    [dispatch],
+  );
 
-        dispatch({ type: actions.ON_AUTH, payload });
-      })
-      .catch(e => {
-        dispatch({ type: actions.AUTH_ERROR, payload: e.message });
-      });
-  }, []);
+  const onRegister = useCallback(
+    (email, password, confirmPassword) => {
+      if (password !== confirmPassword) {
+        return dispatch({ type: actions.AUTH_ERROR, payload: 'Passwords do not match' });
+      }
+      dispatch({ type: actions.LOADING_AUTH, payload: true });
 
-  const onRegister = useCallback((email, password, confirmPassword) => {
-    if (password !== confirmPassword) {
-      return dispatch({ type: actions.AUTH_ERROR, payload: 'Passwords do not match' });
-    }
-    dispatch({ type: actions.LOADING_AUTH, payload: true });
-
-    registerRequest(email, password)
-      .then(result => {
-        let payload = result;
-        if (result && 'user' in result) payload = result.user;
-
-        dispatch({ type: actions.ON_AUTH, payload });
-      })
-      .catch(e => {
-        dispatch({ type: actions.AUTH_ERROR, payload: e.message });
-      });
-  }, []);
+      registerRequest(email, password).then(result => reformUserPayload(result, dispatch));
+    },
+    [dispatch],
+  );
 
   useEffect(() => {
     onAuthStateChanged(dispatch);

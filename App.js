@@ -10,6 +10,7 @@ import 'react-native-gesture-handler';
 import React, { useEffect } from 'react';
 import { ThemeProvider } from 'styled-components';
 import { Provider as PaperProvider } from 'react-native-paper';
+import SplashScreen from 'react-native-splash-screen';
 
 import { theme } from './src/infrastructure/theme';
 import { changeKeepAwake } from './src/utils';
@@ -21,6 +22,7 @@ const { AppProvider } = appContext;
 function App() {
   useEffect(() => {
     changeKeepAwake(true);
+    setTimeout(() => SplashScreen.hide(), 300);
     return () => changeKeepAwake(false);
   }, []);
   return (

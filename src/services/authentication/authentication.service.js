@@ -1,5 +1,7 @@
 import firebase from '@react-native-firebase/app';
 import auth from '@react-native-firebase/auth';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 import { actions } from '../../context/app';
 
 const firebaseConfig = {
@@ -26,11 +28,24 @@ export const logoutRequest = () => {
   return auth().signOut();
 };
 
-export const onAuthStateChanged = dispatch => {
-  auth().onAuthStateChanged(result => {
-    let payload = result;
+export const reformUserPayload = async (result, dispatch, canSetError = true) => {
+  try {
+    if (!result) return;
+
+    let payload = { ...result };
     if (result && 'user' in result) payload = result.user;
+    if (result && '_user' in result) payload = result._user;
+
+    const avatar = await AsyncStorage.getItem(`@avatar-${payload.uid}`);
+    if (avatar) payload.photoURL = avatar;
 
     dispatch({ type: actions.ON_AUTH, payload });
-  });
+  } catch (error) {
+    if (canSetError) dispatch({ type: actions.AUTH_ERROR, payload: error.message });
+    else console.log('onAuthState Error....', error);
+  }
+};
+
+export const onAuthStateChanged = dispatch => {
+  auth().onAuthStateChanged(result => reformUserPayload(result, dispatch, false));
 };

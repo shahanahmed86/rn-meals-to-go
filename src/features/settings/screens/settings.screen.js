@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { TouchableOpacity } from 'react-native';
 import { Avatar, List } from 'react-native-paper';
 import styled from 'styled-components/native';
 
@@ -20,7 +21,15 @@ function SettingsScreen({ navigation, appStore, onLogout }) {
   return (
     <SafeArea>
       <AvatarContainer>
-        <Avatar.Icon size={180} icon="human" backgroundColor="#2182BD" />
+        <Spacer size="large">
+          <TouchableOpacity onPress={() => navigation.navigate('Camera')}>
+            {user.photoURL ? (
+              <Avatar.Image size={180} source={{ uri: user.photoURL }} />
+            ) : (
+              <Avatar.Icon size={180} icon="human" backgroundColor="#2182BD" />
+            )}
+          </TouchableOpacity>
+        </Spacer>
         <Spacer size="large">
           <Text variant="label">{user.email}</Text>
         </Spacer>

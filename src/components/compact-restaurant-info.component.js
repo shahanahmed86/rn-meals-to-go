@@ -1,5 +1,5 @@
 import React from 'react';
-import { Platform, View, Image } from 'react-native';
+import { View, Image } from 'react-native';
 import PropTypes from 'prop-types';
 import WebView from 'react-native-webview';
 import styled from 'styled-components/native';
