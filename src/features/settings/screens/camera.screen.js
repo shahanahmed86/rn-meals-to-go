@@ -14,7 +14,6 @@ const { withAppContext, actions } = appContext;
 const dimensions = Dimensions.get('screen');
 
 const cameraOptions = {
-  saveToPhotos: true,
   cameraType: 'front',
   maxWidth: dimensions.width,
   maxHeight: dimensions.height,

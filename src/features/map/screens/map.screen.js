@@ -7,9 +7,8 @@ import { restaurantContext } from '../../../context';
 
 const { withRestaurantContext } = restaurantContext;
 
-function MapScreen({ restaurantStore, appStore, navigation }) {
+function MapScreen({ restaurantStore, navigation }) {
   const { restaurants, location } = restaurantStore;
-  const { isAndroid } = appStore;
 
   const region = useMemo(() => {
     if (location) {
@@ -37,7 +36,7 @@ function MapScreen({ restaurantStore, appStore, navigation }) {
             return (
               <MapView.Marker key={`${restaurant.name}-${i}`} title={restaurant.name} coordinate={coordinate}>
                 <MapView.Callout onPress={() => navigation.navigate('RestaurantDetails', { restaurant })}>
-                  <MapCallout restaurant={restaurant} isAndroid={isAndroid} />
+                  <MapCallout restaurant={restaurant} />
                 </MapView.Callout>
               </MapView.Marker>
             );
@@ -52,9 +51,6 @@ MapScreen.propTypes = {
     restaurants: PropTypes.array.isRequired,
     location: PropTypes.object,
   }),
-  appStore: PropTypes.shape({
-    isAndroid: PropTypes.bool.isRequired,
-  }).isRequired,
   navigation: PropTypes.shape({
     navigate: PropTypes.func.isRequired,
   }).isRequired,

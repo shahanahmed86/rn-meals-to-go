@@ -3,6 +3,7 @@ import { View, Image } from 'react-native';
 import PropTypes from 'prop-types';
 import WebView from 'react-native-webview';
 import styled from 'styled-components/native';
+import { useTheme } from 'react-native-paper';
 
 import Text from './text.component';
 
@@ -24,8 +25,9 @@ const Item = styled(View)`
   align-items: center;
 `;
 
-function CompactRestaurantInfo({ restaurant, isAndroid, onMapScreen }) {
-  const ResponsiveImage = isAndroid && onMapScreen ? CompactWebView : CompactImage;
+function CompactRestaurantInfo({ restaurant, onMapScreen }) {
+  const theme = useTheme();
+  const ResponsiveImage = theme.isAndroid && onMapScreen ? CompactWebView : CompactImage;
   return (
     <Item>
       <ResponsiveImage source={{ uri: restaurant.photos[0] }} />
@@ -42,7 +44,6 @@ CompactRestaurantInfo.defaultProps = {
 
 CompactRestaurantInfo.propTypes = {
   restaurant: PropTypes.object.isRequired,
-  isAndroid: PropTypes.bool.isRequired,
   onMapScreen: PropTypes.bool.isRequired,
 };
 

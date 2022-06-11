@@ -18,6 +18,7 @@ const AvatarContainer = styled.View`
 const { withAppContext } = appContext;
 function SettingsScreen({ navigation, appStore, onLogout }) {
   const { authenticating, user } = appStore;
+
   return (
     <SafeArea>
       <AvatarContainer>

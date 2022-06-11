@@ -1,6 +1,6 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import firebase from '@react-native-firebase/app';
 import auth from '@react-native-firebase/auth';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { actions } from '../../context/app';
 
@@ -42,10 +42,14 @@ export const reformUserPayload = async (result, dispatch, canSetError = true) =>
     dispatch({ type: actions.ON_AUTH, payload });
   } catch (error) {
     if (canSetError) dispatch({ type: actions.AUTH_ERROR, payload: error.message });
-    else console.log('onAuthState Error....', error);
+    else {
+      console.log('onAuthState Error....', error);
+      dispatch({ type: actions.LOADING_AUTH, payload: false });
+    }
   }
 };
 
 export const onAuthStateChanged = dispatch => {
+  dispatch({ type: actions.LOADING_AUTH, payload: true });
   auth().onAuthStateChanged(result => reformUserPayload(result, dispatch, false));
 };

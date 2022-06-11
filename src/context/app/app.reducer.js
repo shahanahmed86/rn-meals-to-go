@@ -1,11 +1,9 @@
-import { Platform } from 'react-native';
 import * as actions from './app.actions';
 
 export const initialState = {
-  isAndroid: Platform.OS === 'android',
-
   user: null,
   authenticating: false,
+  isAuthenticated: false,
   authError: null,
 };
 
@@ -14,28 +12,26 @@ export function reducer(state, action) {
     case actions.LOADING_AUTH: {
       return {
         ...state,
+        isAuthenticated: false,
         user: null,
         authenticating: action.payload,
         authError: null,
       };
     }
     case actions.ON_AUTH: {
+      const user = action.payload;
       return {
         ...state,
-        user: action.payload,
+        isAuthenticated: !!user,
+        user,
         authenticating: false,
         authError: null,
-      };
-    }
-    case actions.SAVE_PICTURE: {
-      return {
-        ...state,
-        user: { ...state.user, photoURL: action.payload },
       };
     }
     case actions.AUTH_ERROR: {
       return {
         ...state,
+        isAuthenticated: false,
         user: null,
         authenticating: false,
         authError: action.payload,
@@ -44,9 +40,16 @@ export function reducer(state, action) {
     case actions.RESET: {
       return {
         ...state,
+        isAuthenticated: false,
         user: null,
         authenticating: false,
         authError: null,
+      };
+    }
+    case actions.SAVE_PICTURE: {
+      return {
+        ...state,
+        user: Object.assign({}, state.user, { photoURL: action.payload }),
       };
     }
     default: {

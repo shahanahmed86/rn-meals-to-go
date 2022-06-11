@@ -22,7 +22,7 @@ const { AppProvider } = appContext;
 function App() {
   useEffect(() => {
     changeKeepAwake(true);
-    setTimeout(() => SplashScreen.hide(), 300);
+    SplashScreen.hide();
     return () => changeKeepAwake(false);
   }, []);
   return (

@@ -93,8 +93,8 @@ function RestaurantProvider({ appStore, children }) {
   }, []);
 
   useEffect(() => {
-    if (appStore.user) loadFavorites(appStore.user.uid);
-  }, [loadFavorites, appStore.user]);
+    if (appStore.isAuthenticated) loadFavorites(appStore.user.uid);
+  }, [loadFavorites, appStore.isAuthenticated, appStore.user]);
 
   return (
     <Provider
@@ -108,6 +108,7 @@ RestaurantProvider.propTypes = {
   children: PropTypes.element.isRequired,
   appStore: PropTypes.shape({
     user: PropTypes.object,
+    isAuthenticated: PropTypes.bool.isRequired,
   }).isRequired,
 };
 

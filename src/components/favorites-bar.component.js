@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { TouchableOpacity, View, ScrollView } from 'react-native';
+
 import styled from 'styled-components/native';
 import CompactRestaurantInfo from './compact-restaurant-info.component';
 import Spacer from './spacer.component';
@@ -10,7 +11,7 @@ const FavoritesWrapper = styled(View)`
   padding: 10px;
 `;
 
-function FavoritesBar({ favorites, isAndroid, onNavigate }) {
+function FavoritesBar({ favorites, onNavigate }) {
   if (!favorites.length) return null;
   return (
     <FavoritesWrapper>
@@ -21,7 +22,7 @@ function FavoritesBar({ favorites, isAndroid, onNavigate }) {
         {favorites.map((favorite, i) => (
           <Spacer key={`${favorite.name}-${i}`} position="left" size="medium">
             <TouchableOpacity onPress={() => onNavigate('RestaurantDetails', { restaurant: favorite })}>
-              <CompactRestaurantInfo isAndroid={isAndroid} restaurant={favorite} />
+              <CompactRestaurantInfo restaurant={favorite} />
             </TouchableOpacity>
           </Spacer>
         ))}
@@ -30,13 +31,8 @@ function FavoritesBar({ favorites, isAndroid, onNavigate }) {
   );
 }
 
-FavoritesBar.defaultProps = {
-  isAndroid: false,
-};
-
 FavoritesBar.propTypes = {
   favorites: PropTypes.array.isRequired,
-  isAndroid: PropTypes.bool.isRequired,
   onNavigate: PropTypes.func.isRequired,
 };
 

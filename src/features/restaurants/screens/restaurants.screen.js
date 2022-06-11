@@ -12,15 +12,14 @@ import { SafeArea } from '../../../components';
 import { restaurantContext } from '../../../context';
 
 const { withRestaurantContext } = restaurantContext;
-function RestaurantsScreen({ appStore, restaurantStore, navigation }) {
+function RestaurantsScreen({ restaurantStore, navigation }) {
   const { loadingRestaurants, restaurants, favorites } = restaurantStore;
-  const { isAndroid } = appStore;
   const [isToggled, setIsToggled] = useState(false);
 
   return (
     <SafeArea>
       <Search onFavoritesToggle={() => setIsToggled(!isToggled)} isFavoritesToggled={isToggled} />
-      {isToggled && <FavoritesBar favorites={favorites} isAndroid={isAndroid} onNavigate={navigation.navigate} />}
+      {isToggled && <FavoritesBar favorites={favorites} onNavigate={navigation.navigate} />}
       {loadingRestaurants ? (
         <LoaderComponent>
           <ActivityIndicator size="large" color={Colors.blue300} />
@@ -49,9 +48,6 @@ RestaurantsScreen.propTypes = {
     loadingRestaurants: PropTypes.bool.isRequired,
     restaurants: PropTypes.array.isRequired,
     favorites: PropTypes.array.isRequired,
-  }),
-  appStore: PropTypes.shape({
-    isAndroid: PropTypes.bool.isRequired,
   }),
   navigation: PropTypes.object.isRequired,
 };

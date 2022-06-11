@@ -2,13 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { CompactRestaurantInfo } from '../../../components';
 
-function MapCallout({ restaurant, isAndroid }) {
-  return <CompactRestaurantInfo restaurant={restaurant} isAndroid={isAndroid} onMapScreen />;
+function MapCallout({ restaurant }) {
+  return <CompactRestaurantInfo restaurant={restaurant} onMapScreen />;
 }
 
 MapCallout.propTypes = {
   restaurant: PropTypes.object.isRequired,
-  isAndroid: PropTypes.bool.isRequired,
 };
 
 export default MapCallout;

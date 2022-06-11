@@ -3,11 +3,10 @@ import { mockImages, mocks } from './mock';
 
 export const restaurantsRequest = location => {
   return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      const mock = mocks[location];
-      if (!mock) reject(new Error('Location not found'));
-      resolve(mock);
-    }, 700);
+    const mock = mocks[location];
+    if (!mock) reject(new Error('Location not found'));
+
+    resolve(mock);
   });
 };
 
