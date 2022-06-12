@@ -1,15 +1,11 @@
 import camelize from 'camelize';
+import { host as baseUrl } from '../../utils';
 
-import { locations } from './location.mock';
-
-export const locationRequest = searchTerm => {
-  return new Promise((resolve, reject) => {
-    if (typeof searchTerm !== 'string') reject(new Error('Invalid value found in search'));
-
-    if (!(searchTerm in locations)) reject(new Error('Location not found'));
-
-    resolve(locations[searchTerm]);
-  });
+export const locationRequest = async searchTerm => {
+  const url = `${baseUrl}/geocode?city=${searchTerm}`;
+  return fetch(url)
+    .then(_result => _result.json())
+    .catch(console.error);
 };
 
 export const locationTransform = result => {

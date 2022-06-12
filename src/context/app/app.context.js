@@ -43,16 +43,13 @@ function AppProvider({ children }) {
     onAuthStateChanged(dispatch);
   }, []);
 
-  const onLogout = useCallback(() => {
+  const onLogout = () => {
     dispatch({ type: actions.LOADING_AUTH, payload: true });
     logoutRequest()
-      .then(() => {
-        dispatch({ type: actions.RESET });
-      })
-      .catch(e => {
-        dispatch({ type: actions.AUTH_ERROR, payload: e.message });
-      });
-  }, []);
+      .then(() => dispatch({ type: actions.RESET }))
+      .catch(e => dispatch({ type: actions.AUTH_ERROR, payload: e.message }))
+      .finally(() => dispatch({ type: actions.LOADING_AUTH, payload: false }));
+  };
 
   return (
     <Provider value={{ appStore: store, appDispatch: dispatch, onLogin, onRegister, onLogout }}>{children}</Provider>

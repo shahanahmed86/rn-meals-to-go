@@ -34,7 +34,7 @@ function RestaurantProvider({ appStore, children }) {
     if (debouncedSearchText) {
       dispatch({ type: actions.LOADING_LOCATION, payload: true });
 
-      locationRequest(debouncedSearchText.toLowerCase())
+      locationRequest(debouncedSearchText)
         .then(locationTransform)
         .then(result => dispatch({ type: actions.FETCH_LOCATION, payload: result }))
         .catch(err => dispatch({ type: actions.ERROR_LOCATION, payload: err.message }));

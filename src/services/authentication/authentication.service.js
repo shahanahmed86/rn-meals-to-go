@@ -42,10 +42,9 @@ export const reformUserPayload = async (result, dispatch, canSetError = true) =>
     dispatch({ type: actions.ON_AUTH, payload });
   } catch (error) {
     if (canSetError) dispatch({ type: actions.AUTH_ERROR, payload: error.message });
-    else {
-      console.log('onAuthState Error....', error);
-      dispatch({ type: actions.LOADING_AUTH, payload: false });
-    }
+    else console.log('onAuthState Error....', error);
+  } finally {
+    dispatch({ type: actions.LOADING_AUTH, payload: false });
   }
 };
 

@@ -59,3 +59,7 @@ buck-out/
 # Ruby / CocoaPods
 /ios/Pods/
 /vendor/bundle/
+
+*/node_modules/**/*
+firebase-debug.log
+ui-debug.log

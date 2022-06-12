@@ -1,9 +1,9 @@
 import * as actions from './app.actions';
 
 export const initialState = {
+  isAuthenticated: false,
   user: null,
   authenticating: false,
-  isAuthenticated: false,
   authError: null,
 };
 
@@ -12,28 +12,22 @@ export function reducer(state, action) {
     case actions.LOADING_AUTH: {
       return {
         ...state,
-        isAuthenticated: false,
-        user: null,
         authenticating: action.payload,
-        authError: null,
       };
     }
     case actions.ON_AUTH: {
       const user = action.payload;
+      const isAuthenticated = !!user;
       return {
         ...state,
-        isAuthenticated: !!user,
+        isAuthenticated,
         user,
-        authenticating: false,
         authError: null,
       };
     }
     case actions.AUTH_ERROR: {
       return {
         ...state,
-        isAuthenticated: false,
-        user: null,
-        authenticating: false,
         authError: action.payload,
       };
     }

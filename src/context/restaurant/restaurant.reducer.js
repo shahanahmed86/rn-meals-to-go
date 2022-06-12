@@ -9,7 +9,7 @@ export const initialState = {
   location: null,
   errorLocation: null,
 
-  searchText: 'chicago',
+  searchText: '',
 
   favorites: [],
 };

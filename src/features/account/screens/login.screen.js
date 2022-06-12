@@ -17,8 +17,8 @@ const { withAppContext, actions } = appContext;
 
 const LoginScreen = ({ onLogin, appStore, appDispatch, navigation }) => {
   const { authenticating, authError } = appStore;
-  const [email, setEmail] = useState('test1@domain.com');
-  const [password, setPassword] = useState('test123');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
   const onLoginHandler = () => {
     if (!email.trim() || !password.trim()) return;

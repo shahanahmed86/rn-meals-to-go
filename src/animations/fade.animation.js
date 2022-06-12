@@ -21,7 +21,7 @@ function FadeInView({ duration, children, ...props }) {
 }
 
 FadeInView.defaultProps = {
-  duration: 1500,
+  duration: 1000,
 };
 
 FadeInView.propTypes = {
