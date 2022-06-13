@@ -1,11 +1,9 @@
 import camelize from 'camelize';
-import { host as baseUrl } from '../../utils';
+import { httpRequest } from '../../utils';
 
-export const restaurantsRequest = location => {
-  const url = `${baseUrl}/placesNearby?location=${location}`;
-  return fetch(url)
-    .then(_result => _result.json())
-    .catch(console.error);
+export const restaurantsRequest = async location => {
+  const url = `/placesNearby?location=${location}`;
+  return httpRequest(url).catch(console.error);
 };
 
 export const restaurantsTransform = ({ results = [] }) => {

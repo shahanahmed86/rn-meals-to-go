@@ -1,11 +1,9 @@
 import camelize from 'camelize';
-import { host as baseUrl } from '../../utils';
+import { httpRequest } from '../../utils';
 
 export const locationRequest = async searchTerm => {
-  const url = `${baseUrl}/geocode?city=${searchTerm}`;
-  return fetch(url)
-    .then(_result => _result.json())
-    .catch(console.error);
+  const url = `/geocode?city=${searchTerm}`;
+  return httpRequest(url).catch(console.error);
 };
 
 export const locationTransform = result => {
