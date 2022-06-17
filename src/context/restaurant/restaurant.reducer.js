@@ -1,6 +1,6 @@
-import * as actions from './restaurant.actions';
+import { restaurantActions } from './restaurant.actions';
 
-export const initialState = {
+export const initialRestaurantState = {
   loadingRestaurants: false,
   restaurants: [],
   errorRestaurants: null,
@@ -9,20 +9,20 @@ export const initialState = {
   location: null,
   errorLocation: null,
 
-  searchText: '',
+  searchText: 'toronto',
 
   favorites: [],
 };
 
-export function reducer(state, action) {
+export function restaurantReducer(state, action) {
   switch (action.type) {
-    case actions.SEARCH_RESTAURANTS: {
+    case restaurantActions.SEARCH_RESTAURANTS: {
       return {
         ...state,
         searchText: action.payload,
       };
     }
-    case actions.LOADING_RESTAURANTS: {
+    case restaurantActions.LOADING_RESTAURANTS: {
       return {
         ...state,
         loadingRestaurants: action.payload,
@@ -30,7 +30,7 @@ export function reducer(state, action) {
         errorRestaurants: null,
       };
     }
-    case actions.FETCH_RESTAURANTS: {
+    case restaurantActions.FETCH_RESTAURANTS: {
       return {
         ...state,
         loadingRestaurants: false,
@@ -38,7 +38,7 @@ export function reducer(state, action) {
         errorRestaurants: null,
       };
     }
-    case actions.ERROR_RESTAURANTS: {
+    case restaurantActions.ERROR_RESTAURANTS: {
       return {
         ...state,
         loadingRestaurants: false,
@@ -46,7 +46,7 @@ export function reducer(state, action) {
         errorRestaurants: action.payload,
       };
     }
-    case actions.LOADING_LOCATION: {
+    case restaurantActions.LOADING_LOCATION: {
       return {
         ...state,
         loadingLocation: action.payload,
@@ -54,7 +54,7 @@ export function reducer(state, action) {
         errorLocation: null,
       };
     }
-    case actions.FETCH_LOCATION: {
+    case restaurantActions.FETCH_LOCATION: {
       return {
         ...state,
         loadingLocation: false,
@@ -62,7 +62,7 @@ export function reducer(state, action) {
         errorLocation: null,
       };
     }
-    case actions.ERROR_LOCATION: {
+    case restaurantActions.ERROR_LOCATION: {
       return {
         ...state,
         loadingLocation: false,
@@ -71,14 +71,14 @@ export function reducer(state, action) {
         restaurants: [],
       };
     }
-    case actions.ADD_TO_FAVORITES: {
+    case restaurantActions.ADD_TO_FAVORITES: {
       return {
         ...state,
         favorites: state.favorites.concat([action.payload]),
       };
     }
-    case actions.REMOVE_FROM_FAVORITES:
-    case actions.LOAD_FAVORITES: {
+    case restaurantActions.REMOVE_FROM_FAVORITES:
+    case restaurantActions.LOAD_FAVORITES: {
       return {
         ...state,
         favorites: action.payload,

@@ -3,7 +3,7 @@ import { httpRequest } from '../../utils';
 
 export const locationRequest = async searchTerm => {
   const url = `/geocode?city=${searchTerm}`;
-  return httpRequest(url).catch(console.error);
+  return httpRequest(url);
 };
 
 export const locationTransform = result => {

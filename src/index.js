@@ -12,12 +12,10 @@ import { ThemeProvider } from 'styled-components';
 import { Provider as PaperProvider } from 'react-native-paper';
 import SplashScreen from 'react-native-splash-screen';
 
-import { theme } from './src/infrastructure/theme';
-import { changeKeepAwake } from './src/utils';
-import { appContext } from './src/context';
-import Navigation from './src/infrastructure/navigation';
-
-const { AppProvider } = appContext;
+import { theme } from './infrastructure/theme';
+import { changeKeepAwake } from './utils';
+import { AppProvider } from './context';
+import Navigation from './infrastructure/navigation';
 
 function App() {
   useEffect(() => {

@@ -1,21 +1,21 @@
-import * as actions from './app.actions';
+import { appActions } from './app.actions';
 
-export const initialState = {
+export const initialAppState = {
   isAuthenticated: false,
   user: null,
   authenticating: false,
   authError: null,
 };
 
-export function reducer(state, action) {
+export function appReducer(state, action) {
   switch (action.type) {
-    case actions.LOADING_AUTH: {
+    case appActions.LOADING_AUTH: {
       return {
         ...state,
         authenticating: action.payload,
       };
     }
-    case actions.ON_AUTH: {
+    case appActions.ON_AUTH: {
       const user = action.payload;
       const isAuthenticated = !!user;
       return {
@@ -25,13 +25,13 @@ export function reducer(state, action) {
         authError: null,
       };
     }
-    case actions.AUTH_ERROR: {
+    case appActions.AUTH_ERROR: {
       return {
         ...state,
         authError: action.payload,
       };
     }
-    case actions.RESET: {
+    case appActions.RESET: {
       return {
         ...state,
         isAuthenticated: false,
@@ -40,7 +40,7 @@ export function reducer(state, action) {
         authError: null,
       };
     }
-    case actions.SAVE_PICTURE: {
+    case appActions.SAVE_PICTURE: {
       return {
         ...state,
         user: Object.assign({}, state.user, { photoURL: action.payload }),

@@ -12,9 +12,7 @@ import {
   Title,
   ErrorContainer,
 } from '../components/account.styles';
-import { appContext } from '../../../context';
-
-const { withAppContext, actions } = appContext;
+import { withAppContext, appActions } from '../../../context';
 
 const RegisterScreen = ({ onRegister, appStore, appDispatch, navigation }) => {
   const { authenticating, authError } = appStore;
@@ -28,7 +26,7 @@ const RegisterScreen = ({ onRegister, appStore, appDispatch, navigation }) => {
     onRegister(email, password, confirmPassword);
   };
   const goBack = () => {
-    appDispatch({ type: actions.RESET });
+    appDispatch({ type: appActions.RESET });
     navigation.goBack();
   };
   return (

@@ -3,10 +3,11 @@ import { ScrollView } from 'react-native';
 import { List } from 'react-native-paper';
 import PropTypes from 'prop-types';
 
-import { RestaurantInfoCard } from '../components';
-import { SafeArea } from '../../../components';
+import { RestaurantInfoCard, OrderButton } from '../components';
+import { SafeArea, Spacer } from '../../../components';
+import { withCartContext } from '../../../context';
 
-function RestaurantDetails({ route }) {
+function RestaurantDetails({ route, navigation, addToCart }) {
   const { restaurant } = route.params;
   const [isBreakfastOpen, setIsBreakfastOpen] = useState(false);
   const [isLunchOpen, setIsLunchOpen] = useState(false);
@@ -17,6 +18,11 @@ function RestaurantDetails({ route }) {
   const toggleLunchOpen = () => setIsLunchOpen(!isLunchOpen);
   const toggleDinnerOpen = () => setIsDinnerOpen(!isDinnerOpen);
   const toggleDrinkOpen = () => setIsDrinkOpen(!isDrinkOpen);
+
+  const onOrderButton = () => {
+    addToCart({ item: 'Special', price: 1299 }, restaurant);
+    navigation.navigate('Checkout');
+  };
   return (
     <SafeArea>
       <RestaurantInfoCard restaurant={restaurant} showCloseIcon={true} />
@@ -64,6 +70,10 @@ function RestaurantDetails({ route }) {
           </List.Accordion>
         </List.Section>
       </ScrollView>
+
+      <Spacer position="bottom" size="large">
+        <OrderButton onPress={onOrderButton}>Order Special only 12.99</OrderButton>
+      </Spacer>
     </SafeArea>
   );
 }
@@ -74,6 +84,10 @@ RestaurantDetails.propTypes = {
       restaurant: PropTypes.object.isRequired,
     }).isRequired,
   }).isRequired,
+  navigation: PropTypes.shape({
+    navigate: PropTypes.func.isRequired,
+  }).isRequired,
+  addToCart: PropTypes.func.isRequired,
 };
 
-export default RestaurantDetails;
+export default withCartContext(RestaurantDetails);

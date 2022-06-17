@@ -3,21 +3,19 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components/native';
 import { TouchableOpacity } from 'react-native';
 
-import { restaurantContext } from '../../../context';
+import { withRestaurantContext } from '../../../context';
 import { SafeArea, Text, Spacer } from '../../../components';
 import { RestaurantList } from '../../restaurants/screens';
 import { RestaurantInfoCard } from '../../restaurants/components';
 import { FadeInView } from '../../../animations';
-
-const { withRestaurantContext } = restaurantContext;
 
 const NoFavoritesSafeArea = styled(SafeArea)`
   align-items: center;
   justify-content: center;
 `;
 
-function FavoritesScreen({ restaurantStore, navigation }) {
-  const { favorites } = restaurantStore;
+function FavoritesScreen({ favoriteStore, navigation }) {
+  const { favorites } = favoriteStore;
   if (!favorites.length) {
     return (
       <NoFavoritesSafeArea>
@@ -45,9 +43,9 @@ function FavoritesScreen({ restaurantStore, navigation }) {
 }
 
 FavoritesScreen.propTypes = {
-  restaurantStore: PropTypes.shape({
+  favoriteStore: PropTypes.shape({
     favorites: PropTypes.array.isRequired,
-  }).isRequired,
+  }),
   navigation: PropTypes.shape({
     navigate: PropTypes.func.isRequired,
   }).isRequired,

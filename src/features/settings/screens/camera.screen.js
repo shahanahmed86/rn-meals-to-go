@@ -7,9 +7,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import styled from 'styled-components/native';
 import { Spacer, Text } from '../../../components';
-import { appContext } from '../../../context';
-
-const { withAppContext, actions } = appContext;
+import { withAppContext, appActions } from '../../../context';
 
 const dimensions = Dimensions.get('screen');
 
@@ -85,7 +83,7 @@ function CameraScreen({ navigation, appStore, appDispatch }) {
       if (!imageUri) throw new Error('Image not found');
 
       await AsyncStorage.setItem(`@avatar-${user.uid}`, imageUri);
-      appDispatch({ type: actions.SAVE_PICTURE, payload: imageUri });
+      appDispatch({ type: appActions.SAVE_PICTURE, payload: imageUri });
 
       navigation.goBack();
     } catch (error) {

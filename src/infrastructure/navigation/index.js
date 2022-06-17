@@ -5,11 +5,9 @@ import { ActivityIndicator, Colors } from 'react-native-paper';
 
 import AppNavigator from './app.navigator';
 import AccountNavigator from './account.navigator';
-import { appContext } from '../../context';
+import { withAppContext } from '../../context';
 
 import { LoaderComponent } from '../../features/restaurants/screens';
-
-const { withAppContext } = appContext;
 
 function Navigation({ appStore }) {
   const { isAuthenticated, authenticating } = appStore;

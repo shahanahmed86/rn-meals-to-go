@@ -1,3 +1,7 @@
-export * as appContext from './app';
+export * from './app';
 
-export * as restaurantContext from './restaurant';
+export * from './restaurant';
+
+export * from './cart';
+
+export * from './favorites';

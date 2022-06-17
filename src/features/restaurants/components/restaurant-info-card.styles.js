@@ -1,6 +1,8 @@
 import styled from 'styled-components/native';
 import { View, Image } from 'react-native';
-import { Card } from 'react-native-paper';
+import { Card, Button } from 'react-native-paper';
+
+import { theme } from '../../../infrastructure/theme';
 
 export const RestaurantCard = styled(Card)`
   background-color: ${props => props.theme.colors.bg.primary};
@@ -31,4 +33,14 @@ export const Ratings = styled(View)`
 export const Icon = styled(Image)`
   height: 15px;
   width: 15px;
+`;
+
+export const OrderButton = styled(Button).attrs({
+  color: theme.colors.brand.primary,
+  mode: 'contained',
+  icon: 'currency-usd',
+})`
+  padding: ${props => props.theme.space[2]};
+  width: 80%;
+  align-self: center;
 `;

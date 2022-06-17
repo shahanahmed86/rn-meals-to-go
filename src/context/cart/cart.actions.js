@@ -1,0 +1,5 @@
+export const cartActions = {
+  ADD_TO_CART: 'ADD_TO_CART',
+  SELECT_RESTAURANT: 'SELECT_RESTAURANT',
+  PAYING_STATE: 'PAYING_STATE',
+};

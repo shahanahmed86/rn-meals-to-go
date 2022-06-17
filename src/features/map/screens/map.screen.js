@@ -3,12 +3,10 @@ import PropTypes from 'prop-types';
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
 import { Map } from '../components/map.styles';
 import { MapCallout, Search } from '../components';
-import { restaurantContext } from '../../../context';
+import { withRestaurantContext } from '../../../context';
 
-const { withRestaurantContext } = restaurantContext;
-
-function MapScreen({ restaurantStore, navigation }) {
-  const { restaurants, location } = restaurantStore;
+function MapScreen({ restaurantStore, navigation, handleSearchRestaurant }) {
+  const { restaurants, location, searchText } = restaurantStore;
 
   const region = useMemo(() => {
     if (location) {
@@ -25,7 +23,7 @@ function MapScreen({ restaurantStore, navigation }) {
   }, [location]);
   return (
     <Fragment>
-      <Search />
+      <Search search={searchText} handleSearch={handleSearchRestaurant} />
       <Map region={region} provider={PROVIDER_GOOGLE}>
         {location &&
           restaurants.map((restaurant, i) => {
@@ -50,10 +48,12 @@ MapScreen.propTypes = {
   restaurantStore: PropTypes.shape({
     restaurants: PropTypes.array.isRequired,
     location: PropTypes.object,
+    searchText: PropTypes.string.isRequired,
   }),
   navigation: PropTypes.shape({
     navigate: PropTypes.func.isRequired,
   }).isRequired,
+  handleSearchRestaurant: PropTypes.func.isRequired,
 };
 
 export default withRestaurantContext(MapScreen);

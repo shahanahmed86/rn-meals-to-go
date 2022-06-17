@@ -1,4 +1,4 @@
-export * as actions from './restaurant.actions';
+export * from './restaurant.actions';
 
 export * from './restaurant.reducer';
 

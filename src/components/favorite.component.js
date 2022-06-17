@@ -1,12 +1,10 @@
-import React, { useMemo, useCallback } from 'react';
+import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components/native';
 import { TouchableOpacity } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
-import { restaurantContext } from '../context';
-
-const { withRestaurantContext } = restaurantContext;
+import { withFavoriteContext } from '../context';
 
 const FavoriteButton = styled(TouchableOpacity)`
   position: absolute;
@@ -15,8 +13,8 @@ const FavoriteButton = styled(TouchableOpacity)`
   z-index: 9;
 `;
 
-function Favorite({ appStore, restaurantStore, addToFavorites, removeFromFavorites, restaurant }) {
-  const { favorites } = restaurantStore;
+function Favorite({ appStore, favoriteStore, addToFavorites, removeFromFavorites, restaurant }) {
+  const { favorites } = favoriteStore;
   const { user } = appStore;
 
   const isFavorite = useMemo(() => {
@@ -33,7 +31,7 @@ function Favorite({ appStore, restaurantStore, addToFavorites, removeFromFavorit
 }
 
 Favorite.propTypes = {
-  restaurantStore: PropTypes.shape({
+  favoriteStore: PropTypes.shape({
     favorites: PropTypes.array.isRequired,
   }),
   appStore: PropTypes.shape({
@@ -44,4 +42,4 @@ Favorite.propTypes = {
   restaurant: PropTypes.object.isRequired,
 };
 
-export default withRestaurantContext(Favorite);
+export default withFavoriteContext(Favorite);

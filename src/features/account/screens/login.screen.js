@@ -11,14 +11,12 @@ import {
   Title,
   ErrorContainer,
 } from '../components/account.styles';
-import { appContext } from '../../../context';
-
-const { withAppContext, actions } = appContext;
+import { withAppContext, appActions } from '../../../context';
 
 const LoginScreen = ({ onLogin, appStore, appDispatch, navigation }) => {
   const { authenticating, authError } = appStore;
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('test1@domain.com');
+  const [password, setPassword] = useState('test123');
 
   const onLoginHandler = () => {
     if (!email.trim() || !password.trim()) return;
@@ -26,7 +24,7 @@ const LoginScreen = ({ onLogin, appStore, appDispatch, navigation }) => {
     onLogin(email, password);
   };
   const goBack = () => {
-    appDispatch({ type: actions.RESET });
+    appDispatch({ type: appActions.RESET });
     navigation.goBack();
   };
   return (

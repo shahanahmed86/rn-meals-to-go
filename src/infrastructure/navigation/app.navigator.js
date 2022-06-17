@@ -4,13 +4,13 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 
 import RestaurantsNavigator from './restaurants.navigator';
 import SettingsNavigator from './settings.navigator';
+import CheckoutNavigator from './checkout.navigator';
 import { MapScreen } from '../../features/map/screens';
-import { restaurantContext } from '../../context';
-
-const { RestaurantProvider } = restaurantContext;
+import { FavoriteProvider, RestaurantProvider, CartProvider } from '../../context';
 
 const TAB_ICONS = {
   Restaurants: 'restaurant',
+  Checkout: 'cart',
   Map: 'map',
   Settings: 'settings',
 };
@@ -29,13 +29,18 @@ const createScreenOptions = ({ route }) => {
 
 function AppNavigator() {
   return (
-    <RestaurantProvider>
-      <Tab.Navigator screenOptions={createScreenOptions} initialRouteName="Restaurants">
-        <Tab.Screen name="Restaurants" component={RestaurantsNavigator} />
-        <Tab.Screen name="Map" component={MapScreen} />
-        <Tab.Screen name="Settings" component={SettingsNavigator} />
-      </Tab.Navigator>
-    </RestaurantProvider>
+    <FavoriteProvider>
+      <RestaurantProvider>
+        <CartProvider>
+          <Tab.Navigator screenOptions={createScreenOptions} initialRouteName="Restaurants">
+            <Tab.Screen name="Restaurants" component={RestaurantsNavigator} />
+            <Tab.Screen name="Checkout" component={CheckoutNavigator} />
+            <Tab.Screen name="Map" component={MapScreen} />
+            <Tab.Screen name="Settings" component={SettingsNavigator} />
+          </Tab.Navigator>
+        </CartProvider>
+      </RestaurantProvider>
+    </FavoriteProvider>
   );
 }
 

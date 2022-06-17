@@ -41,7 +41,7 @@ Spacer.defaultProps = {
 Spacer.propTypes = {
   position: PropTypes.oneOf(['top', 'right', 'bottom', 'left']).isRequired,
   size: PropTypes.oneOf(['small', 'medium', 'large']).isRequired,
-  children: PropTypes.element.isRequired,
+  children: PropTypes.element,
 };
 
 export default Spacer;

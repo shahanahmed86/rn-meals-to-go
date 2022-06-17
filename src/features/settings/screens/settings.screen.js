@@ -4,7 +4,7 @@ import { TouchableOpacity } from 'react-native';
 import { Avatar, List } from 'react-native-paper';
 import styled from 'styled-components/native';
 
-import { appContext } from '../../../context';
+import { withAppContext } from '../../../context';
 import { SafeArea, Text, Spacer } from '../../../components';
 
 const ListItem = styled(List.Item)`
@@ -15,7 +15,6 @@ const AvatarContainer = styled.View`
   align-items: center;
 `;
 
-const { withAppContext } = appContext;
 function SettingsScreen({ navigation, appStore, onLogout }) {
   const { authenticating, user } = appStore;
 

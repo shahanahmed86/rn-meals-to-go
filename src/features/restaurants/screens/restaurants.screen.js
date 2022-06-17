@@ -9,16 +9,21 @@ import { RestaurantInfoCard } from '../components';
 import { RestaurantList, LoaderComponent } from './restaurant.styles';
 import { SafeArea } from '../../../components';
 
-import { restaurantContext } from '../../../context';
+import { withRestaurantContext } from '../../../context';
 
-const { withRestaurantContext } = restaurantContext;
-function RestaurantsScreen({ restaurantStore, navigation }) {
-  const { loadingRestaurants, restaurants, favorites } = restaurantStore;
+function RestaurantsScreen({ restaurantStore, favoriteStore, handleSearchRestaurant, navigation }) {
+  const { loadingRestaurants, restaurants, searchText } = restaurantStore;
+  const { favorites } = favoriteStore;
+
   const [isToggled, setIsToggled] = useState(false);
-
   return (
     <SafeArea>
-      <Search onFavoritesToggle={() => setIsToggled(!isToggled)} isFavoritesToggled={isToggled} />
+      <Search
+        search={searchText}
+        handleSearch={handleSearchRestaurant}
+        onFavoritesToggle={() => setIsToggled(!isToggled)}
+        isFavoritesToggled={isToggled}
+      />
       {isToggled && <FavoritesBar favorites={favorites} onNavigate={navigation.navigate} />}
       {loadingRestaurants ? (
         <LoaderComponent>
@@ -47,9 +52,15 @@ RestaurantsScreen.propTypes = {
   restaurantStore: PropTypes.shape({
     loadingRestaurants: PropTypes.bool.isRequired,
     restaurants: PropTypes.array.isRequired,
+    errorLocation: PropTypes.string,
+    errorRestaurants: PropTypes.string,
+    searchText: PropTypes.string.isRequired,
+  }),
+  favoriteStore: PropTypes.shape({
     favorites: PropTypes.array.isRequired,
   }),
   navigation: PropTypes.object.isRequired,
+  handleSearchRestaurant: PropTypes.func.isRequired,
 };
 
 export default withRestaurantContext(RestaurantsScreen);

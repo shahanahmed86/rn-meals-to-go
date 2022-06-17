@@ -1,8 +1,8 @@
 import React, { createContext, useReducer, useEffect, useCallback } from 'react';
 import PropTypes from 'prop-types';
 
-import { initialState, reducer } from './app.reducer';
-import * as actions from './app.actions';
+import { initialAppState, appReducer } from './app.reducer';
+import { appActions } from './app.actions';
 import {
   loginRequest,
   logoutRequest,
@@ -13,14 +13,16 @@ import {
 
 const { Provider, Consumer } = createContext();
 
-export const withAppContext = Component => props => <Consumer>{value => <Component {...value} {...props} />}</Consumer>;
+export const withAppContext = Component => props => {
+  return <Consumer>{value => <Component {...value} {...props} />}</Consumer>;
+};
 
 function AppProvider({ children }) {
-  const [store, dispatch] = useReducer(reducer, initialState);
+  const [store, dispatch] = useReducer(appReducer, initialAppState);
 
   const onLogin = useCallback(
     (email, password) => {
-      dispatch({ type: actions.LOADING_AUTH, payload: true });
+      dispatch({ type: appActions.LOADING_AUTH, payload: true });
 
       loginRequest(email, password).then(result => reformUserPayload(result, dispatch));
     },
@@ -30,9 +32,9 @@ function AppProvider({ children }) {
   const onRegister = useCallback(
     (email, password, confirmPassword) => {
       if (password !== confirmPassword) {
-        return dispatch({ type: actions.AUTH_ERROR, payload: 'Passwords do not match' });
+        return dispatch({ type: appActions.AUTH_ERROR, payload: 'Passwords do not match' });
       }
-      dispatch({ type: actions.LOADING_AUTH, payload: true });
+      dispatch({ type: appActions.LOADING_AUTH, payload: true });
 
       registerRequest(email, password).then(result => reformUserPayload(result, dispatch));
     },
@@ -44,11 +46,11 @@ function AppProvider({ children }) {
   }, []);
 
   const onLogout = () => {
-    dispatch({ type: actions.LOADING_AUTH, payload: true });
+    dispatch({ type: appActions.LOADING_AUTH, payload: true });
     logoutRequest()
-      .then(() => dispatch({ type: actions.RESET }))
-      .catch(e => dispatch({ type: actions.AUTH_ERROR, payload: e.message }))
-      .finally(() => dispatch({ type: actions.LOADING_AUTH, payload: false }));
+      .then(() => dispatch({ type: appActions.RESET }))
+      .catch(e => dispatch({ type: appActions.AUTH_ERROR, payload: e.message }))
+      .finally(() => dispatch({ type: appActions.LOADING_AUTH, payload: false }));
   };
 
   return (

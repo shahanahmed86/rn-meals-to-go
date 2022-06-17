@@ -2,7 +2,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import firebase from '@react-native-firebase/app';
 import auth from '@react-native-firebase/auth';
 
-import { actions } from '../../context/app';
+import { appActions } from '../../context';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyC8EpeJjgxD5mwQExeJWbzRvcs39v50nW4',
@@ -39,16 +39,16 @@ export const reformUserPayload = async (result, dispatch, canSetError = true) =>
     const avatar = await AsyncStorage.getItem(`@avatar-${payload.uid}`);
     if (avatar) payload.photoURL = avatar;
 
-    dispatch({ type: actions.ON_AUTH, payload });
+    dispatch({ type: appActions.ON_AUTH, payload });
   } catch (error) {
-    if (canSetError) dispatch({ type: actions.AUTH_ERROR, payload: error.message });
+    if (canSetError) dispatch({ type: appActions.AUTH_ERROR, payload: error.message });
     else console.log('onAuthState Error....', error);
   } finally {
-    dispatch({ type: actions.LOADING_AUTH, payload: false });
+    dispatch({ type: appActions.LOADING_AUTH, payload: false });
   }
 };
 
 export const onAuthStateChanged = dispatch => {
-  dispatch({ type: actions.LOADING_AUTH, payload: true });
+  dispatch({ type: appActions.LOADING_AUTH, payload: true });
   auth().onAuthStateChanged(result => reformUserPayload(result, dispatch, false));
 };

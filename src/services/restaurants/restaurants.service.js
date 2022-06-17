@@ -3,7 +3,7 @@ import { httpRequest } from '../../utils';
 
 export const restaurantsRequest = async location => {
   const url = `/placesNearby?location=${location}`;
-  return httpRequest(url).catch(console.error);
+  return httpRequest(url);
 };
 
 export const restaurantsTransform = ({ results = [] }) => {

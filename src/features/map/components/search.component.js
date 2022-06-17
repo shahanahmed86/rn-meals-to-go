@@ -3,9 +3,7 @@ import PropTypes from 'prop-types';
 import { View } from 'react-native';
 import { Searchbar } from 'react-native-paper';
 import styled from 'styled-components/native';
-import { restaurantContext } from '../../../context';
-
-const { withRestaurantContext, actions } = restaurantContext;
+import { withRestaurantContext, restaurantActions } from '../../../context';
 
 export const SearchContainer = styled(View)`
   padding: ${props => props.theme.space[3]};
@@ -17,7 +15,7 @@ export const SearchContainer = styled(View)`
 
 function Search({ restaurantStore, restaurantDispatch }) {
   const { searchText } = restaurantStore;
-  const handleSearch = text => restaurantDispatch({ type: actions.SEARCH_RESTAURANTS, payload: text });
+  const handleSearch = text => restaurantDispatch({ type: restaurantActions.SEARCH_RESTAURANTS, payload: text });
 
   return (
     <SearchContainer>
