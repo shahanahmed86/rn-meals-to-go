@@ -38,8 +38,7 @@ function CartProvider({ appStore, children }) {
   const payNow = async payload => {
     try {
       dispatch({ type: cartActions.PAYING_STATE, payload: true });
-      const result = await paymentRequest(payload);
-      console.log(result);
+      await paymentRequest(payload);
       clearCart();
     } catch (error) {
       throw error;
