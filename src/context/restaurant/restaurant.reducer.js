@@ -9,7 +9,7 @@ export const initialRestaurantState = {
   location: null,
   errorLocation: null,
 
-  searchText: 'toronto',
+  searchText: '',
 
   favorites: [],
 };

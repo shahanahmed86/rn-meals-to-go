@@ -1,7 +1,7 @@
 import React, { Fragment, useState, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import { ScrollView } from 'react-native';
-import { List } from 'react-native-paper';
+import { List, Divider } from 'react-native-paper';
 
 import { withCartContext } from '../../../context';
 import {
@@ -101,6 +101,9 @@ function CheckoutScreen({ cartStore, clearCart, payNow, navigation }) {
             <Text>Total : {sumOfCart / 100}</Text>
           </Fragment>
         </Spacer>
+        <Spacer size="large" />
+        <Divider />
+        <Spacer />
 
         <NameInput label="Name" value={name} onChangeText={setName} />
         {name.length > 0 && (

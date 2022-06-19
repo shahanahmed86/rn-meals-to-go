@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { ScrollView } from 'react-native';
-import { List } from 'react-native-paper';
+import { List, Divider } from 'react-native-paper';
 import PropTypes from 'prop-types';
 
 import { RestaurantInfoCard, OrderButton } from '../components';
@@ -34,8 +34,10 @@ function RestaurantDetails({ route, navigation, addToCart }) {
             title="Breakfast"
             left={props => <List.Icon {...props} icon="bread-slice" />}>
             <List.Item title="Eggs Benedicts" />
+            <Divider />
             <List.Item title="Classic Breakfast" />
           </List.Accordion>
+          <Divider />
 
           <List.Accordion
             expanded={isLunchOpen}
@@ -43,9 +45,12 @@ function RestaurantDetails({ route, navigation, addToCart }) {
             title="Lunch"
             left={props => <List.Icon {...props} icon="hamburger" />}>
             <List.Item title="Burger w/ Fries" />
+            <Divider />
             <List.Item title="Steak Sandwich" />
+            <Divider />
             <List.Item title="Mushroom Soup" />
           </List.Accordion>
+          <Divider />
 
           <List.Accordion
             expanded={isDinnerOpen}
@@ -53,9 +58,12 @@ function RestaurantDetails({ route, navigation, addToCart }) {
             title="Dinner"
             left={props => <List.Icon {...props} icon="food-variant" />}>
             <List.Item title="Spaghetti Bolognese" />
+            <Divider />
             <List.Item title="Veal Cutlet with Chicken Mushroom Rotini" />
+            <Divider />
             <List.Item title="Steak Frites" />
           </List.Accordion>
+          <Divider />
 
           <List.Accordion
             expanded={isDrinkOpen}
@@ -63,11 +71,16 @@ function RestaurantDetails({ route, navigation, addToCart }) {
             title="Drinks"
             left={props => <List.Icon {...props} icon="cup" />}>
             <List.Item title="Coffee" />
+            <Divider />
             <List.Item title="Tea" />
+            <Divider />
             <List.Item title="Modelo" />
+            <Divider />
             <List.Item title="Coke" />
+            <Divider />
             <List.Item title="Fanta" />
           </List.Accordion>
+          <Divider />
         </List.Section>
       </ScrollView>
 

@@ -7,6 +7,7 @@ import SettingsNavigator from './settings.navigator';
 import CheckoutNavigator from './checkout.navigator';
 import { MapScreen } from '../../features/map/screens';
 import { FavoriteProvider, RestaurantProvider, CartProvider } from '../../context';
+import { theme } from '../../infrastructure/theme';
 
 const TAB_ICONS = {
   Restaurants: 'restaurant',
@@ -21,8 +22,8 @@ const createScreenOptions = ({ route }) => {
   const iconName = TAB_ICONS[route.name];
   return {
     tabBarIcon: ({ color, size }) => <Ionicons name={iconName} size={size} color={color} />,
-    tabBarActiveTintColor: 'tomato',
-    tabBarInactiveTintColor: 'gray',
+    tabBarActiveTintColor: theme.colors.brand.primary,
+    tabBarInactiveTintColor: theme.colors.brand.muted,
     headerShown: false,
   };
 };

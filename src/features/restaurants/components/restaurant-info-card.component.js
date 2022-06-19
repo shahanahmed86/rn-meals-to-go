@@ -12,7 +12,7 @@ function RestaurantInfoCard({ restaurant }) {
 
   const ratingArray = new Array(Math.floor(rating)).fill(0);
   return (
-    <RestaurantCard elevation={5}>
+    <RestaurantCard elevation={2}>
       <Favorite restaurant={restaurant} />
       <RestaurantCard.Cover key={name} source={{ uri: photos[0] }} />
       <Info>

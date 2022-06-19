@@ -17,7 +17,7 @@ function MapScreen({ restaurantStore, navigation, handleSearchRestaurant }) {
         latitude: location.lat,
         longitude: location.lng,
         latitudeDelta: northeastLat - southwestLat,
-        longitudeDelta: 0.2,
+        longitudeDelta: 0.01,
       };
     }
   }, [location]);

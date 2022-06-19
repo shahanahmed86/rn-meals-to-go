@@ -7,6 +7,8 @@ import { theme } from '../../../infrastructure/theme';
 export const RestaurantCard = styled(Card)`
   background-color: ${props => props.theme.colors.bg.primary};
   padding: ${props => props.theme.sizes[0]};
+  width: 95%;
+  align-self: center;
 `;
 
 export const Info = styled(View)`
