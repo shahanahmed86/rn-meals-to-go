@@ -12,10 +12,11 @@ import { ThemeProvider } from 'styled-components';
 import { Provider as PaperProvider } from 'react-native-paper';
 import SplashScreen from 'react-native-splash-screen';
 
-import { theme } from './infrastructure/theme';
-import { changeKeepAwake } from './utils';
-import { AppProvider } from './context';
-import Navigation from './infrastructure/navigation';
+// absolute url @meals-to-go = ./src
+import { theme } from '@meals-to-go/infrastructure/theme';
+import { changeKeepAwake } from '@meals-to-go/utils';
+import { AppProvider } from '@meals-to-go/context';
+import Navigation from '@meals-to-go/infrastructure/navigation';
 
 function App() {
   useEffect(() => {

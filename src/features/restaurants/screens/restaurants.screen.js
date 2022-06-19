@@ -3,13 +3,13 @@ import PropTypes from 'prop-types';
 import { TouchableOpacity } from 'react-native';
 import { ActivityIndicator, Colors } from 'react-native-paper';
 
-import { Spacer, Search, FavoritesBar } from '../../../components';
-import { FadeInView } from '../../../animations';
+import { Spacer, Search, FavoritesBar } from '@meals-to-go/components';
+import { FadeInView } from '@meals-to-go/animations';
 import { RestaurantInfoCard } from '../components';
 import { RestaurantList, LoaderComponent } from './restaurant.styles';
-import { SafeArea } from '../../../components';
+import { SafeArea } from '@meals-to-go/components';
 
-import { withRestaurantContext } from '../../../context';
+import { withRestaurantContext } from '@meals-to-go/context';
 
 function RestaurantsScreen({ restaurantStore, favoriteStore, handleSearchRestaurant, navigation }) {
   const { loadingRestaurants, restaurants, searchText } = restaurantStore;

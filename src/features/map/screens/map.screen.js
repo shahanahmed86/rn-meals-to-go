@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
 import { Map } from '../components/map.styles';
 import { MapCallout, Search } from '../components';
-import { withRestaurantContext } from '../../../context';
+import { withRestaurantContext } from '@meals-to-go/context';
 
 function MapScreen({ restaurantStore, navigation, handleSearchRestaurant }) {
   const { restaurants, location, searchText } = restaurantStore;

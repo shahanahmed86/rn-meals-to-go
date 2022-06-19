@@ -4,8 +4,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { initialCartState, cartReducer } from './cart.reducer';
 import { cartActions } from './cart.actions';
-import { withAppContext } from '../app';
-import { paymentRequest } from '../../services/checkout/checkout.service';
+import { withAppContext } from '@meals-to-go/context/app';
+import { paymentRequest } from '@meals-to-go/services/checkout/checkout.service';
 
 const { Provider, Consumer } = createContext();
 

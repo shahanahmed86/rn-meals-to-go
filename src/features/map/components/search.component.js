@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { View } from 'react-native';
 import { Searchbar } from 'react-native-paper';
 import styled from 'styled-components/native';
-import { withRestaurantContext, restaurantActions } from '../../../context';
+import { withRestaurantContext, restaurantActions } from '@meals-to-go/context';
 
 export const SearchContainer = styled(View)`
   padding: ${props => props.theme.space[3]};

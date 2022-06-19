@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { ActivityIndicator, Colors } from 'react-native-paper';
 
-import { Spacer, Text } from '../../../components';
+import { Spacer, Text } from '@meals-to-go/components';
 import {
   AccountBackground,
   AccountContainer,
@@ -12,7 +12,7 @@ import {
   Title,
   ErrorContainer,
 } from '../components/account.styles';
-import { withAppContext, appActions } from '../../../context';
+import { withAppContext, appActions } from '@meals-to-go/context';
 
 const RegisterScreen = ({ onRegister, appStore, appDispatch, navigation }) => {
   const { authenticating, authError } = appStore;

@@ -3,11 +3,11 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components/native';
 import { TouchableOpacity } from 'react-native';
 
-import { withRestaurantContext } from '../../../context';
-import { SafeArea, Text, Spacer } from '../../../components';
-import { RestaurantList } from '../../restaurants/screens';
-import { RestaurantInfoCard } from '../../restaurants/components';
-import { FadeInView } from '../../../animations';
+import { withRestaurantContext } from '@meals-to-go/context';
+import { SafeArea, Text, Spacer } from '@meals-to-go/components';
+import { RestaurantList } from '@meals-to-go/features/restaurants/screens';
+import { RestaurantInfoCard } from '@meals-to-go/features/restaurants/components';
+import { FadeInView } from '@meals-to-go/animations';
 
 const NoFavoritesSafeArea = styled(SafeArea)`
   align-items: center;

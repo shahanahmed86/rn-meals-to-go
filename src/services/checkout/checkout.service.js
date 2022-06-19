@@ -1,4 +1,4 @@
-import { httpRequest } from '../../utils';
+import { httpRequest } from '@meals-to-go/utils';
 
 export const createTokenRequest = async cardInfo => {
   const url = '/payment/create-token';

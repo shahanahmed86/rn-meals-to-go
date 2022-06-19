@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { SafeArea, Text } from '../../../components';
+import { SafeArea, Text } from '@meals-to-go/components';
 import { CartIconContainer, CartIcon } from '../components';
 import { useTheme } from 'styled-components';
 

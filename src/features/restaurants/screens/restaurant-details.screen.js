@@ -4,8 +4,8 @@ import { List, Divider } from 'react-native-paper';
 import PropTypes from 'prop-types';
 
 import { RestaurantInfoCard, OrderButton } from '../components';
-import { SafeArea, Spacer } from '../../../components';
-import { withCartContext } from '../../../context';
+import { SafeArea, Spacer } from '@meals-to-go/components';
+import { withCartContext } from '@meals-to-go/context';
 
 function RestaurantDetails({ route, navigation, addToCart }) {
   const { restaurant } = route.params;

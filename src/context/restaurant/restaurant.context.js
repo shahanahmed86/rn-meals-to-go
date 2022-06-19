@@ -2,11 +2,11 @@ import React, { createContext, useReducer, useEffect, useCallback } from 'react'
 import PropTypes from 'prop-types';
 
 import { initialRestaurantState, restaurantReducer } from './restaurant.reducer';
-import { restaurantsRequest, restaurantsTransform } from '../../services/restaurants/restaurants.service';
+import { restaurantsRequest, restaurantsTransform } from '@meals-to-go/services/restaurants/restaurants.service';
 import { restaurantActions } from './restaurant.actions';
-import { withFavoriteContext } from '../favorites';
-import { useDebounce } from '../../hooks';
-import { locationRequest, locationTransform } from '../../services/location/location.service';
+import { withFavoriteContext } from '@meals-to-go/context/favorites';
+import { useDebounce } from '@meals-to-go/hooks';
+import { locationRequest, locationTransform } from '@meals-to-go/services/location/location.service';
 
 const { Provider, Consumer } = createContext();
 

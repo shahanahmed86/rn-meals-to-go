@@ -2,7 +2,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import firebase from '@react-native-firebase/app';
 import auth from '@react-native-firebase/auth';
 
-import { appActions } from '../../context';
+import { appActions } from '@meals-to-go/context';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyC8EpeJjgxD5mwQExeJWbzRvcs39v50nW4',

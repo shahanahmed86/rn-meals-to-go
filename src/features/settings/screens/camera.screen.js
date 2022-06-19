@@ -6,8 +6,8 @@ import { launchCamera } from 'react-native-image-picker';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import styled from 'styled-components/native';
-import { Spacer, Text } from '../../../components';
-import { withAppContext, appActions } from '../../../context';
+import { Spacer, Text } from '@meals-to-go/components';
+import { withAppContext, appActions } from '@meals-to-go/context';
 
 const dimensions = Dimensions.get('screen');
 

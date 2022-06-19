@@ -2,7 +2,7 @@ import styled from 'styled-components/native';
 import { FlatList } from 'react-native';
 import { View } from 'react-native';
 
-import { SafeArea } from '../../../components';
+import { SafeArea } from '@meals-to-go/components';
 
 export const SearchContainer = styled(View)`
   padding: ${props => props.theme.space[3]};

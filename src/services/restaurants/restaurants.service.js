@@ -1,5 +1,5 @@
 import camelize from 'camelize';
-import { httpRequest } from '../../utils';
+import { httpRequest } from '@meals-to-go/utils';
 
 export const restaurantsRequest = async location => {
   const url = `/placesNearby?location=${location}`;

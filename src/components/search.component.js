@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Searchbar } from 'react-native-paper';
-import { SearchContainer } from '../features/restaurants/screens/restaurant.styles';
+import { SearchContainer } from '@meals-to-go/features/restaurants/screens/restaurant.styles';
 
 function Search({ search, handleSearch, isFavoritesToggled, onFavoritesToggle }) {
   return (

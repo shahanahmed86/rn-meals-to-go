@@ -4,8 +4,8 @@ import { TouchableOpacity } from 'react-native';
 import { Avatar, List } from 'react-native-paper';
 import styled, { useTheme } from 'styled-components/native';
 
-import { withAppContext } from '../../../context';
-import { SafeArea, Text, Spacer } from '../../../components';
+import { withAppContext } from '@meals-to-go/context';
+import { SafeArea, Text, Spacer } from '@meals-to-go/components';
 
 const ListItem = styled(List.Item)`
   padding: ${props => props.theme.space[3]};
@@ -17,7 +17,7 @@ const AvatarContainer = styled.View`
 `;
 
 const SettingsBackground = styled.ImageBackground.attrs({
-  source: require('../../../../assets/home_bg.jpg'),
+  source: require('@meals-to-go/assets/home_bg.jpg'),
 })`
   position: absolute;
   height: 100%;

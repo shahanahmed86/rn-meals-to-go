@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { ScrollView } from 'react-native';
 import { List, Divider } from 'react-native-paper';
 
-import { withCartContext } from '../../../context';
+import { withCartContext } from '@meals-to-go/context';
 import {
   CreditCardInput,
   CartIconContainer,
@@ -13,9 +13,9 @@ import {
   ClearButton,
   ActionsWrapper,
 } from '../components';
-import { SafeArea, Spacer, Text } from '../../../components';
-import { createTokenRequest } from '../../../services/checkout/checkout.service';
-import { RestaurantInfoCard } from '../../restaurants/components';
+import { SafeArea, Spacer, Text } from '@meals-to-go/components';
+import { createTokenRequest } from '@meals-to-go/services/checkout/checkout.service';
+import { RestaurantInfoCard } from '@meals-to-go/features/restaurants/components';
 
 function CheckoutScreen({ cartStore, clearCart, payNow, navigation }) {
   const { cart, restaurant, paying } = cartStore;

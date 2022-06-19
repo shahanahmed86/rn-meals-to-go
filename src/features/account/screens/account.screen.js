@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import LottieView from 'lottie-react-native';
 
-import { Spacer } from '../../../components';
+import { Spacer } from '@meals-to-go/components';
 import {
   AccountBackground,
   AccountCover,
@@ -22,7 +22,7 @@ const AccountScreen = ({ navigation }) => {
           autoPlay
           loop
           resizeMode="cover"
-          source={require('../../../../assets/watermelon.json')}
+          source={require('@meals-to-go/assets/watermelon.json')}
         />
       </AnimationWrapper>
       <Title>Meals To Go</Title>

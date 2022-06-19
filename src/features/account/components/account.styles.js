@@ -1,10 +1,10 @@
 import styled from 'styled-components/native';
 import { ImageBackground } from 'react-native';
 import { Button, TextInput } from 'react-native-paper';
-import { theme } from '../../../infrastructure/theme';
+import { theme } from '@meals-to-go/infrastructure/theme';
 
 export const AccountBackground = styled(ImageBackground).attrs({
-  source: require('../../../../assets/home_bg.jpg'),
+  source: require('@meals-to-go/assets/home_bg.jpg'),
 })`
   flex: 1;
   align-items: center;

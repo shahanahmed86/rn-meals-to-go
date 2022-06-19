@@ -5,9 +5,9 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import RestaurantsNavigator from './restaurants.navigator';
 import SettingsNavigator from './settings.navigator';
 import CheckoutNavigator from './checkout.navigator';
-import { MapScreen } from '../../features/map/screens';
-import { FavoriteProvider, RestaurantProvider, CartProvider } from '../../context';
-import { theme } from '../../infrastructure/theme';
+import { MapScreen } from '@meals-to-go/features/map/screens';
+import { FavoriteProvider, RestaurantProvider, CartProvider } from '@meals-to-go/context';
+import { theme } from '@meals-to-go/infrastructure/theme';
 
 const TAB_ICONS = {
   Restaurants: 'restaurant',

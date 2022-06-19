@@ -2,9 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { SvgXml } from 'react-native-svg';
 
-import star from '../../../../assets/star';
-import open from '../../../../assets/open';
-import { Favorite, Spacer, Text } from '../../../components';
+import star from '@meals-to-go/assets/star';
+import open from '@meals-to-go/assets/open';
+import { Favorite, Spacer, Text } from '@meals-to-go/components';
 import { Info, Icon, Ratings, RestaurantCard, Section, SectionEnd } from './restaurant-info-card.styles';
 
 function RestaurantInfoCard({ restaurant }) {

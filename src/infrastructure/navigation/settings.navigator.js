@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { createStackNavigator, CardStyleInterpolators } from '@react-navigation/stack';
-import { SettingsScreen, FavoritesScreen, CameraScreen } from '../../features/settings/screens';
+import { SettingsScreen, FavoritesScreen, CameraScreen } from '@meals-to-go/features/settings/screens';
 
 const SettingsStack = createStackNavigator();
 

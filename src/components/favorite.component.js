@@ -4,7 +4,7 @@ import styled from 'styled-components/native';
 import { TouchableOpacity } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
-import { withFavoriteContext } from '../context';
+import { withFavoriteContext } from '@meals-to-go/context';
 
 const FavoriteButton = styled(TouchableOpacity)`
   position: absolute;

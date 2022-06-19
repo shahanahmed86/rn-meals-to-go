@@ -1,6 +1,6 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-import { CheckoutScreen, CheckoutSuccessScreen, CheckoutErrorScreen } from '../../features/checkout/screens';
+import { CheckoutScreen, CheckoutSuccessScreen, CheckoutErrorScreen } from '@meals-to-go/features/checkout/screens';
 
 const Stack = createStackNavigator();
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { CompactRestaurantInfo } from '../../../components';
+import { CompactRestaurantInfo } from '@meals-to-go/components';
 
 function MapCallout({ restaurant }) {
   return <CompactRestaurantInfo restaurant={restaurant} onMapScreen />;

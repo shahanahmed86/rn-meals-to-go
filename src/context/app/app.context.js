@@ -9,7 +9,7 @@ import {
   onAuthStateChanged,
   reformUserPayload,
   registerRequest,
-} from '../../services/authentication/authentication.service';
+} from '@meals-to-go/services/authentication/authentication.service';
 
 const { Provider, Consumer } = createContext();
 

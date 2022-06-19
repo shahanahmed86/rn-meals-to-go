@@ -2,7 +2,7 @@ import styled from 'styled-components/native';
 import { View, Image } from 'react-native';
 import { Card, Button } from 'react-native-paper';
 
-import { theme } from '../../../infrastructure/theme';
+import { theme } from '@meals-to-go/infrastructure/theme';
 
 export const RestaurantCard = styled(Card)`
   background-color: ${props => props.theme.colors.bg.primary};

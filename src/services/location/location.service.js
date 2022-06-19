@@ -1,5 +1,5 @@
 import camelize from 'camelize';
-import { httpRequest } from '../../utils';
+import { httpRequest } from '@meals-to-go/utils';
 
 export const locationRequest = async searchTerm => {
   const url = `/geocode?city=${searchTerm}`;

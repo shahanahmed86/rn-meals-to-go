@@ -1,6 +1,6 @@
 import styled from 'styled-components/native';
 import { Avatar, Button, TextInput } from 'react-native-paper';
-import { theme } from '../../../infrastructure/theme';
+import { theme } from '@meals-to-go/infrastructure/theme';
 
 export const CartIconContainer = styled.View`
   justify-content: center;

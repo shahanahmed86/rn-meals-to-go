@@ -4,7 +4,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { initialFavoriteState, favoriteReducer } from './favorite.reducer';
 import { favoriteActions } from './favorite.actions';
-import { withAppContext } from '../app';
+import { withAppContext } from '@meals-to-go/context/app';
 
 const { Provider, Consumer } = createContext();
 
